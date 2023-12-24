@@ -8,7 +8,7 @@
 
 
 
-## 经济基础决定上层建筑。
+
 
 ## 经济基础决定上层建筑
 
@@ -66,13 +66,117 @@
 
 ## 对技术的遗忘看法？
 
-
+技术不断更新迭代，对于一些学习过但不经常运用的技术，遗忘是必然的。我们最重要的能力就是，快速学会一项技术并运用其来解决所要解决的问题。
 
 
 
 # 他山之石-硬件
 
-## 硬件工程师
+## 单片机
+
+> 作者：人在天涯
+> 链接：https://www.zhihu.com/question/631089612/answer/3320199115
+> 来源：知乎
+> 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+以下是[哈尔滨工业大学](https://www.zhihu.com/search?q=哈尔滨工业大学&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})教师郭天祥的一篇流传广泛的文章，其全文为：
+
+很多想学单片机的人问我的第一句话就是怎样才能学好单片机？对于这个问题我今天就我自己是如何开始学单片机，如何开始上手，如何开始熟练这个过程给大家讲讲。
+
+ 先说说单片机，一般我们现在用的比较多的的[MCS-51](https://www.zhihu.com/search?q=MCS-51&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})的单片机，它的资料比较多，用的人也很多，市场也很大。就我个人的体会怎么样才能更快的学会单片机这门课。单片机这门课是一项非常重视动手实践的科目，不能总是看书，但是学习它首先必须得看书，因为从书中你需要大概了解一下，单片机的各个功能[寄存器](https://www.zhihu.com/search?q=寄存器&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，而说明白点，我们使用单片机就是用软件去控制单片机的各个功能寄存器，再说明白点，就是控制单片机那些管脚的[电平](https://www.zhihu.com/search?q=电平&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})什么时候输出高，什么时候输出低。由这些高低电平的变化来控制你的系统板，实现我们需要的各个功能。至于看书，只需大概了解单片机各管脚都是干什么的？能实现什么样的功能？第一次，第二次你可能看不明白，但这不要紧，因为还缺少实际的感观认识。所以我总是说，学单片机看书看两三天的就够了，看小说你一天能看五六本，看单片机你两三天看两三遍就够了，可以不用仔细的看。
+
+ 推荐一本书，就这一本就足够，书名是《[新编MCS-51单片机应用设计](https://www.zhihu.com/search?q=新编MCS-51单片机应用设计&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})》，是哈尔滨工业大学出版社出的的，作者是[张毅刚](https://www.zhihu.com/search?q=张毅刚&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})。大概了解一下书上的内容，然后实践，这是非常关键的，如果说学单片机你不实践那是不可能学会的，关于实践有两种方法你可以选择，一种方法：你自己花钱买一块单片机的学习板，不要求功能太全的，对于初学者来说你买功能非常多的那种板子，上面有很多东西你这辈子都用不着，我建议有[流水灯](https://www.zhihu.com/search?q=流水灯&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})、数码管、独立键盘、[矩阵键盘](https://www.zhihu.com/search?q=矩阵键盘&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})、AD或DA（原理一样）、液晶、[蜂鸣器](https://www.zhihu.com/search?q=蜂鸣器&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，这就差不多了。如果上面我提到的这些，你能熟练应用，那可以说对于单片机方面的硬件你已经入门了，剩下的就是自己练习设计电路，不断的积累经验。只要过了第一关，后面的路就好走多了，[万事开头难](https://www.zhihu.com/search?q=万事开头难&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，大家可能都听过。方法二：你身边如果有单片机方面的高手，向他求助，让他帮你搭个简单的最小系统板。对于高手来说，做个单片机的最小系统板只需要一分钟的时间，而对于初学者可就难多了，因为只有对硬件了解了，才能熟练运用。而如果你身边没有这样的高手，又找不到可以帮助你的人，那我劝你最好是自己买上一块，毕竟自己有一块要方便的多，以后做单片机类的小实验时都能用得上，还省事。
+
+ 有了单片机学习板之后你就要多练习，最好是自己有台电脑，一天少看电影，少打游戏，把学习板和电脑连好，打开调试软件坐在电脑前，先学会怎么用调试软件，然后从最简单的流水灯实验做起，等你能让那八个流水灯按照你的意愿随意流动时你已经入门了，你会发现单片机是多么迷人的东西啊，太好玩了，这不是在学习知识，而是在玩，当你编写的程序按你的意愿实现时你比做什么事都开心，你会上瘾的，真的。做电子类的人真的会上瘾。然后让数码管亮起来，这两项会了后已经不能自拔了，你已经开始考虑你这辈子要走哪一行了。就是要这样练习，在写程序的时候你肯定会遇到很多问题，而这时你再去翻书找，或是问别人，当得到解答后你会记住一辈子的，知识必须用于现实生活中，解决实际问题，这样才能发挥它的作用，你自己好好想想，上了这么多年大学，天天上课，你在课堂上学到了什么？是不是为了[期末考试](https://www.zhihu.com/search?q=期末考试&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})而忙碌呢？考完得了90分，哈哈哈好高兴啊，下学期开学回来忘的[一干二净](https://www.zhihu.com/search?q=一干二净&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，是不是？你学到什么了？
+
+但是我告诉你单片机一旦学会，永远不会忘了。另外我再说说用汇编和C语言编程的问题。很多同学大一二就开设了C语言的课，我也上过，我知道那时天天就是几乘几，几加几啊，求个[阶乘](https://www.zhihu.com/search?q=阶乘&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})啊。学完了有什么用？让你用C语言编单片机的程序你是不是就傻了？书上的东西我们必须要会运用。单片机编程用C语言或[汇编语言](https://www.zhihu.com/search?q=汇编语言&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})都可以，但是我建议用C语言比较好，如果原来有C语言的基础那学起来会更好，如果没有，也可以边学单片机边学C语言，C语言也挺简单，只是一门工具而已，我劝你最好学会，将来肯定用得着，要不你以后也得学，你一点[汇编](https://www.zhihu.com/search?q=汇编&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})都不会根本无所谓，但你一点C语言都不会那你将来会吃苦头。
+
+ 汇编写程序代码效率高，但相对难度较大，而且很罗嗦，尤其是遇到算法方面的问题时，根本是麻烦的不得了，现在单片机的主频在不断的提高，我们完全不需要那么高效率的代码，因为有高频率的时钟，单片机的ROM也在不断的提高，足够装得下你用C语言写的任何代码，C语言的资料又多又好找，将来可移植性非常好，只需要变一个IO口写个[温度传感器](https://www.zhihu.com/search?q=温度传感器&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})的程序在哪里都能用，所以我劝大家用C语言。
+
+ 总结上面，只要你有信心，做事能坚持到底，有不成功不放弃的强烈意志，那学个单片机来说就是件非常容易的事。
+
+步骤：1.找本书大概了解一下单片机结构，大概了解就行。不用都看懂，又不让你出书的。（三天）
+
+ 2.找学习板练习编写程序，学单片机就是练编程序，遇到不会的再问人或查书。 （二十天）
+
+ 3.自己网上找些小电路类的资料练习设计外围电路。焊好后自己调试，熟悉过程。 （十天）
+
+ 4.自己完全设计具有个人风格的电路，产，。。。你已经是高手了。 。。。。
+
+ 看到了吗？下功夫一个多月你就能成为高手，我就讲这么多了，学不学得会，下不下得了功夫就看你的了。
+
+ 以上是哈尔滨工业大学教师郭天祥的对自身学习单片机经历的总结，我觉得总结的不错，对于怎样学好单片机，我补充如下：
+
+学单片机需要什么基础？
+
+1.与以前所学的知识关联很少；
+
+2.只需要掌握很基本的数电模电知识，如二进制、十进制、[十六进制](https://www.zhihu.com/search?q=十六进制&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})之间的转换，与、或、非逻辑关系等；
+
+3.对各种器件的概念基本上是从0开始；
+
+4.如果要用C语言编程，需具备简单的C语言基础；
+
+5.所有人都站在了同一起跑线上;
+
+在网上搜索可以看到，有些中学都搞过单片机编程比赛，中专学生在举行[单片机技术](https://www.zhihu.com/search?q=单片机技术&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})比赛时有学生能在封闭的情况下（不能携带任何资料）在一个上午的时间里做出下面的题目：
+
+![img](img/单片机1)
+
+图1 中专学生单片机编程竞赛题
+
+**因此，我认为学习单片机不难，关键在于你要有学习的兴趣和坚持的决心！先开始学习，其它的知识在学习的过程中逐步深入。**
+
+ 你再看看下面这张图，你能理解吗？
+
+这张图里有几个基本的知识点：
+
+1. P1=0xfe，是C语言的[赋值语句](https://www.zhihu.com/search?q=赋值语句&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})；
+2. 0xfe是单片机C语言的16进制的表达方式；
+3. P1.0-P1.7是单片机P1口的八个[I/O端口](https://www.zhihu.com/search?q=I%2FO端口&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})。
+4. 八个发光二极管一端接+5V，一端接P1口的八个I/O端口，那么发光二极管的导通条件是什么？对，就是P1口的八个I/O端口为[低电平](https://www.zhihu.com/search?q=低电平&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})也就是为0V时导通，就这么简单。
+5. 你能理解以上四点了，再看[P1=0xfe](https://www.zhihu.com/search?q=P1%3D0xfe&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，就是把1111 1110赋值给P1的八个端口。
+6. 在51单片机课程里，1代表[高电平](https://www.zhihu.com/search?q=高电平&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})+5V，0代表低电平0V。
+
+现在你能理解图1了吧？恭喜你，你具备学习单片机的[基本知识](https://www.zhihu.com/search?q=基本知识&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})和素质了！
+
+![img](img/单片机2)
+
+图2 单片机控制8个发光二极管
+
+看了这张图，我们也能体会到单片机[控制电路](https://www.zhihu.com/search?q=控制电路&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})的优势，我们要改变对8个发光二极管的控制，使不同的发光二极管点亮，只需在软件里对P1进行不同的赋值即可。如果是用硬件来实现，[电路设计](https://www.zhihu.com/search?q=电路设计&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})就得完全改变。
+
+可以这样理解单片机，单片机是一个可定制功能的IC,而实现定制功能就靠软件实现。
+
+再看下面这个图:通过控制P1.0端口的高低电平，就可以控制灯泡的亮灭。
+
+而这个[控制程序](https://www.zhihu.com/search?q=控制程序&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})与控制一个发光二极管的程序是完全一样的，只是外围电路不同而已。
+
+![img](img/单片机3)
+
+图3 单片机控制灯泡的亮灭
+
+学习单片机需要掌握的基础知识：
+
+C51基础知识。
+
+了解单片机结构及引脚，单片机实验板结构
+
+用单片机学习板掌握51单片机和C语言编程。
+
+KEIL工程建立详细介绍及KEIL软件使用方法
+
+从点亮实验板上的一个发光二极管开始
+
+![img](img/单片机4)
+
+图3  51单片机引脚功能
+
+
+
+
+
+## 硬件工程师入门
 
 硬件工程师如何入门：https://www.zhihu.com/question/421337221/answer/2387759270
 
@@ -108,7 +212,7 @@ EMC电磁兼容：**《EMC电磁兼容-设计与测试案例分析》（郑军�
 
 
 
-## 电路设计
+## 电路设计完整流程
 
 >老工程师经验分享：一套完整的硬件电路设计该怎么做？ - DM Yan的文章 - 知乎
 >https://zhuanlan.zhihu.com/p/270941578
@@ -215,7 +319,7 @@ Protel，也就是Altium（现在入门的童鞋大多用AD）容易上手，网
 
 
 
-## 实际电路设计
+## 实际电路设计流程
 
 >[一个实际电路的原理图是怎样设计出来的？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/358059963)
 
@@ -411,7 +515,7 @@ R1至R10上的总压降为20000/1001*1000≈20KV；每个10M电阻的压降为20
 
 
 
-## 基本电路
+## 基本电路集合
 
 >[电子电路20个经典模拟电路 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/363928568)
 >
@@ -442,7 +546,7 @@ R1至R10上的总压降为20000/1001*1000≈20KV；每个10M电阻的压降为20
 19. 石英晶体振荡电路
 20. 功率放大电路
 
-## 抄板？
+## 关于抄板
 
 [PCB抄板 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/43278056)
 
