@@ -1,0 +1,15 @@
+"D:\EmbeddedSoftware\IARsystem\Embedded\Workbench9.1\arm\bin\armPROC.dll" 
+
+"D:\EmbeddedSoftware\IARsystem\Embedded\Workbench9.1\arm\bin\armSTLINK.dll" 
+
+"D:\learning_projects\learning_IARprojects\IARworkspaces\FreeRTOS-IAR-demo\Project\Debug\Exe\FreeRTOS-demo.out" 
+
+--plugin="D:\EmbeddedSoftware\IARsystem\Embedded\Workbench9.1\arm\bin\armbat.dll" 
+
+--device_macro="D:\EmbeddedSoftware\IARsystem\Embedded\Workbench9.1\arm/config/debugger/ST/STM32F1xx.dmac" 
+
+--flash_loader="D:\EmbeddedSoftware\IARsystem\Embedded\Workbench9.1\arm/config/flashloader/ST/FlashSTM32F10xx8.board" 
+
+
+
+

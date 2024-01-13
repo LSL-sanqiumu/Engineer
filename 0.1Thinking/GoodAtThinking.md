@@ -1,3 +1,44 @@
+# 纯粹
+
+>作者：冬生草
+>链接：https://www.zhihu.com/question/20394233/answer/26374611
+>来源：知乎
+>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+>
+>
+>
+>纯粹，于我而言，是看不见摸不着，不知道用什么来衡量，很难表达的一种气质，但是在芸芸众生中，这种气质会施展它巨大的魔力，很准确地吸引我，一箭穿心。
+>
+>纯粹在大部分人身上都该是曾经有过的，然后慢慢地丢失，有的人丢得快，有的人丢的慢，也有可能只剩下了一点点，藏在心底最柔软的角落。
+>
+>文艺一点的讲，纯粹的人有像初雪一样干净、太阳雨一样温暖，[北极冰](https://www.zhihu.com/search?q=北极冰&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A26374611})一样透明的赤子之心。
+>
+>用人话讲，就是干净，诚实，不做作，[理想主义](https://www.zhihu.com/search?q=理想主义&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A26374611})，永远持有本心的人。
+>
+>不一定是很厉害的人，有可能是[不谙世事](https://www.zhihu.com/search?q=不谙世事&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A26374611})的人，也有可能就是一种天然野生的高品质人类，产生原因未知。
+>
+>应该不是狂热地追求某种事物的人，因为想得到什么，总是要失去什么，常常失去的就是纯粹和本真。当然也有反例，比如梵高。现代人最常见的就是追名逐利，追求舒服的生活，追求高品质的伴侣，追求好工作，追求物质享受…当然，这没什么错，只是这样的不能算纯粹的人。
+>
+>[文艺青年](https://www.zhihu.com/search?q=文艺青年&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A26374611})算是纯粹的人么？不见得，因为大部分文艺青年，追求的是“我就是不追求物质享受，只追求精神丰富”这一[自我认知](https://www.zhihu.com/search?q=自我认知&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A26374611})。
+>
+>以此类推，大部分忙着给自己[贴标签](https://www.zhihu.com/search?q=贴标签&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A26374611})的，都不是纯粹的人。只要心思动了，纯粹就已经被破坏了，因为它容不得一点点造作和人为。所以一个人对自己说：“我想成为纯粹的人。” 几乎是无效的，因为纯粹的人，不像“成功的人，漂亮的人，强大的人，自信的人”那样，可以修炼。纯粹的人自身带着一种禅意，是不可求得，只可随缘的。
+>
+>我眼里纯粹的人
+>
+>欲望少。
+>
+>诚实。
+>
+>杂事想得不多。
+>
+>不[媚俗](https://www.zhihu.com/search?q=媚俗&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A26374611})。
+>
+>不现实，理想化。
+>
+>纯真。
+>
+>对这个世界有善意。
+
 # 思考
 
 ## 辩证法
@@ -81,17 +122,17 @@
 
 以下是[哈尔滨工业大学](https://www.zhihu.com/search?q=哈尔滨工业大学&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})教师郭天祥的一篇流传广泛的文章，其全文为：
 
-很多想学单片机的人问我的第一句话就是怎样才能学好单片机？对于这个问题我今天就我自己是如何开始学单片机，如何开始上手，如何开始熟练这个过程给大家讲讲。
-
- 先说说单片机，一般我们现在用的比较多的的[MCS-51](https://www.zhihu.com/search?q=MCS-51&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})的单片机，它的资料比较多，用的人也很多，市场也很大。就我个人的体会怎么样才能更快的学会单片机这门课。单片机这门课是一项非常重视动手实践的科目，不能总是看书，但是学习它首先必须得看书，因为从书中你需要大概了解一下，单片机的各个功能[寄存器](https://www.zhihu.com/search?q=寄存器&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，而说明白点，我们使用单片机就是用软件去控制单片机的各个功能寄存器，再说明白点，就是控制单片机那些管脚的[电平](https://www.zhihu.com/search?q=电平&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})什么时候输出高，什么时候输出低。由这些高低电平的变化来控制你的系统板，实现我们需要的各个功能。至于看书，只需大概了解单片机各管脚都是干什么的？能实现什么样的功能？第一次，第二次你可能看不明白，但这不要紧，因为还缺少实际的感观认识。所以我总是说，学单片机看书看两三天的就够了，看小说你一天能看五六本，看单片机你两三天看两三遍就够了，可以不用仔细的看。
-
- 推荐一本书，就这一本就足够，书名是《[新编MCS-51单片机应用设计](https://www.zhihu.com/search?q=新编MCS-51单片机应用设计&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})》，是哈尔滨工业大学出版社出的的，作者是[张毅刚](https://www.zhihu.com/search?q=张毅刚&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})。大概了解一下书上的内容，然后实践，这是非常关键的，如果说学单片机你不实践那是不可能学会的，关于实践有两种方法你可以选择，一种方法：你自己花钱买一块单片机的学习板，不要求功能太全的，对于初学者来说你买功能非常多的那种板子，上面有很多东西你这辈子都用不着，我建议有[流水灯](https://www.zhihu.com/search?q=流水灯&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})、数码管、独立键盘、[矩阵键盘](https://www.zhihu.com/search?q=矩阵键盘&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})、AD或DA（原理一样）、液晶、[蜂鸣器](https://www.zhihu.com/search?q=蜂鸣器&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，这就差不多了。如果上面我提到的这些，你能熟练应用，那可以说对于单片机方面的硬件你已经入门了，剩下的就是自己练习设计电路，不断的积累经验。只要过了第一关，后面的路就好走多了，[万事开头难](https://www.zhihu.com/search?q=万事开头难&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，大家可能都听过。方法二：你身边如果有单片机方面的高手，向他求助，让他帮你搭个简单的最小系统板。对于高手来说，做个单片机的最小系统板只需要一分钟的时间，而对于初学者可就难多了，因为只有对硬件了解了，才能熟练运用。而如果你身边没有这样的高手，又找不到可以帮助你的人，那我劝你最好是自己买上一块，毕竟自己有一块要方便的多，以后做单片机类的小实验时都能用得上，还省事。
-
- 有了单片机学习板之后你就要多练习，最好是自己有台电脑，一天少看电影，少打游戏，把学习板和电脑连好，打开调试软件坐在电脑前，先学会怎么用调试软件，然后从最简单的流水灯实验做起，等你能让那八个流水灯按照你的意愿随意流动时你已经入门了，你会发现单片机是多么迷人的东西啊，太好玩了，这不是在学习知识，而是在玩，当你编写的程序按你的意愿实现时你比做什么事都开心，你会上瘾的，真的。做电子类的人真的会上瘾。然后让数码管亮起来，这两项会了后已经不能自拔了，你已经开始考虑你这辈子要走哪一行了。就是要这样练习，在写程序的时候你肯定会遇到很多问题，而这时你再去翻书找，或是问别人，当得到解答后你会记住一辈子的，知识必须用于现实生活中，解决实际问题，这样才能发挥它的作用，你自己好好想想，上了这么多年大学，天天上课，你在课堂上学到了什么？是不是为了[期末考试](https://www.zhihu.com/search?q=期末考试&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})而忙碌呢？考完得了90分，哈哈哈好高兴啊，下学期开学回来忘的[一干二净](https://www.zhihu.com/search?q=一干二净&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，是不是？你学到什么了？
-
-但是我告诉你单片机一旦学会，永远不会忘了。另外我再说说用汇编和C语言编程的问题。很多同学大一二就开设了C语言的课，我也上过，我知道那时天天就是几乘几，几加几啊，求个[阶乘](https://www.zhihu.com/search?q=阶乘&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})啊。学完了有什么用？让你用C语言编单片机的程序你是不是就傻了？书上的东西我们必须要会运用。单片机编程用C语言或[汇编语言](https://www.zhihu.com/search?q=汇编语言&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})都可以，但是我建议用C语言比较好，如果原来有C语言的基础那学起来会更好，如果没有，也可以边学单片机边学C语言，C语言也挺简单，只是一门工具而已，我劝你最好学会，将来肯定用得着，要不你以后也得学，你一点[汇编](https://www.zhihu.com/search?q=汇编&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})都不会根本无所谓，但你一点C语言都不会那你将来会吃苦头。
-
- 汇编写程序代码效率高，但相对难度较大，而且很罗嗦，尤其是遇到算法方面的问题时，根本是麻烦的不得了，现在单片机的主频在不断的提高，我们完全不需要那么高效率的代码，因为有高频率的时钟，单片机的ROM也在不断的提高，足够装得下你用C语言写的任何代码，C语言的资料又多又好找，将来可移植性非常好，只需要变一个IO口写个[温度传感器](https://www.zhihu.com/search?q=温度传感器&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})的程序在哪里都能用，所以我劝大家用C语言。
+>很多想学单片机的人问我的第一句话就是怎样才能学好单片机？对于这个问题我今天就我自己是如何开始学单片机，如何开始上手，如何开始熟练这个过程给大家讲讲。
+>
+> 先说说单片机，一般我们现在用的比较多的的[MCS-51](https://www.zhihu.com/search?q=MCS-51&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})的单片机，它的资料比较多，用的人也很多，市场也很大。就我个人的体会怎么样才能更快的学会单片机这门课。单片机这门课是一项非常重视动手实践的科目，不能总是看书，但是学习它首先必须得看书，因为从书中你需要大概了解一下，单片机的各个功能[寄存器](https://www.zhihu.com/search?q=寄存器&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，而说明白点，我们使用单片机就是用软件去控制单片机的各个功能寄存器，再说明白点，就是控制单片机那些管脚的[电平](https://www.zhihu.com/search?q=电平&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})什么时候输出高，什么时候输出低。由这些高低电平的变化来控制你的系统板，实现我们需要的各个功能。至于看书，只需大概了解单片机各管脚都是干什么的？能实现什么样的功能？第一次，第二次你可能看不明白，但这不要紧，因为还缺少实际的感观认识。所以我总是说，学单片机看书看两三天的就够了，看小说你一天能看五六本，看单片机你两三天看两三遍就够了，可以不用仔细的看。
+>
+> 推荐一本书，就这一本就足够，书名是《[新编MCS-51单片机应用设计](https://www.zhihu.com/search?q=新编MCS-51单片机应用设计&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})》，是哈尔滨工业大学出版社出的的，作者是[张毅刚](https://www.zhihu.com/search?q=张毅刚&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})。大概了解一下书上的内容，然后实践，这是非常关键的，如果说学单片机你不实践那是不可能学会的，关于实践有两种方法你可以选择，一种方法：你自己花钱买一块单片机的学习板，不要求功能太全的，对于初学者来说你买功能非常多的那种板子，上面有很多东西你这辈子都用不着，我建议有[流水灯](https://www.zhihu.com/search?q=流水灯&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})、数码管、独立键盘、[矩阵键盘](https://www.zhihu.com/search?q=矩阵键盘&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})、AD或DA（原理一样）、液晶、[蜂鸣器](https://www.zhihu.com/search?q=蜂鸣器&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，这就差不多了。如果上面我提到的这些，你能熟练应用，那可以说对于单片机方面的硬件你已经入门了，剩下的就是自己练习设计电路，不断的积累经验。只要过了第一关，后面的路就好走多了，[万事开头难](https://www.zhihu.com/search?q=万事开头难&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，大家可能都听过。方法二：你身边如果有单片机方面的高手，向他求助，让他帮你搭个简单的最小系统板。对于高手来说，做个单片机的最小系统板只需要一分钟的时间，而对于初学者可就难多了，因为只有对硬件了解了，才能熟练运用。而如果你身边没有这样的高手，又找不到可以帮助你的人，那我劝你最好是自己买上一块，毕竟自己有一块要方便的多，以后做单片机类的小实验时都能用得上，还省事。
+>
+> 有了单片机学习板之后你就要多练习，最好是自己有台电脑，一天少看电影，少打游戏，把学习板和电脑连好，打开调试软件坐在电脑前，先学会怎么用调试软件，然后从最简单的流水灯实验做起，等你能让那八个流水灯按照你的意愿随意流动时你已经入门了，你会发现单片机是多么迷人的东西啊，太好玩了，这不是在学习知识，而是在玩，当你编写的程序按你的意愿实现时你比做什么事都开心，你会上瘾的，真的。做电子类的人真的会上瘾。然后让数码管亮起来，这两项会了后已经不能自拔了，你已经开始考虑你这辈子要走哪一行了。就是要这样练习，在写程序的时候你肯定会遇到很多问题，而这时你再去翻书找，或是问别人，当得到解答后你会记住一辈子的，知识必须用于现实生活中，解决实际问题，这样才能发挥它的作用，你自己好好想想，上了这么多年大学，天天上课，你在课堂上学到了什么？是不是为了[期末考试](https://www.zhihu.com/search?q=期末考试&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})而忙碌呢？考完得了90分，哈哈哈好高兴啊，下学期开学回来忘的[一干二净](https://www.zhihu.com/search?q=一干二净&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})，是不是？你学到什么了？
+>
+>但是我告诉你单片机一旦学会，永远不会忘了。另外我再说说用汇编和C语言编程的问题。很多同学大一二就开设了C语言的课，我也上过，我知道那时天天就是几乘几，几加几啊，求个[阶乘](https://www.zhihu.com/search?q=阶乘&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})啊。学完了有什么用？让你用C语言编单片机的程序你是不是就傻了？书上的东西我们必须要会运用。单片机编程用C语言或[汇编语言](https://www.zhihu.com/search?q=汇编语言&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})都可以，但是我建议用C语言比较好，如果原来有C语言的基础那学起来会更好，如果没有，也可以边学单片机边学C语言，C语言也挺简单，只是一门工具而已，我劝你最好学会，将来肯定用得着，要不你以后也得学，你一点[汇编](https://www.zhihu.com/search?q=汇编&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})都不会根本无所谓，但你一点C语言都不会那你将来会吃苦头。
+>
+> 汇编写程序代码效率高，但相对难度较大，而且很罗嗦，尤其是遇到算法方面的问题时，根本是麻烦的不得了，现在单片机的主频在不断的提高，我们完全不需要那么高效率的代码，因为有高频率的时钟，单片机的ROM也在不断的提高，足够装得下你用C语言写的任何代码，C语言的资料又多又好找，将来可移植性非常好，只需要变一个IO口写个[温度传感器](https://www.zhihu.com/search?q=温度传感器&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3320199115})的程序在哪里都能用，所以我劝大家用C语言。
 
  总结上面，只要你有信心，做事能坚持到底，有不成功不放弃的强烈意志，那学个单片机来说就是件非常容易的事。
 
