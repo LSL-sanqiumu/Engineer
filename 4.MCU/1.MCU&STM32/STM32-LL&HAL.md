@@ -168,125 +168,15 @@ LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_13);
 
 
 
+# LL库
 
-# EXTI
+1、搭建好项目模板工程。
 
-- 按钮计次。（不应该使用按钮，按钮会有抖动）
-- 通过按钮控制灯的亮灭（要求不高按钮可以使用中断来进行判断是否按下）。
+2、清楚库里面有哪些东西，如何从底层封装成库，提供的API以及API的功能。
 
-# TIM
+3、使用库函数进行开发。
 
-- TIM定时器定时中断部分：1、定时器中断计数，使用内部时钟；2、定时器中断计次，使用外部时钟（用按钮的信号充当）。
-- TIM定时器输出比较功能部分：1、使用PWM驱动LED，实现LED呼吸灯；2、使用PWM波形驱动舵机，按键来控制舵机的旋转角度；3、使用PWM波形来驱动直流电机，按键控制直流电机转速、转向。
-- TIM输入捕获功能部分：1、输入捕获模式测频率（使用TIM的输出比较输出PWM波形供捕获测频率）；2、PWMI模式测频率和占空比。
-- TIM编码器接口部分：1、编码器测速——直流电机（使用接触式旋转编码器来模拟转速）。
 
-
-
-
-
-
-
-# ADC
-
-- 1、使用单通道转换电位器的模拟量。
-- 2、使用单通道模拟多通道转换电位器、温度传感器、光敏传感器、红外传感器的模拟量。（不断依次切换接入AD转换器规则组的通道，并取出各个通道模拟信号被转换后的值）
-
-
-
-
-
-# DMA
-
-- 1、DMA转移数据，从存储器到存储器。
-- 2、使用DMA转移ADC多通道转换后的数据。
-
-
-
-
-
-
-
-# USART
-
-- 1、数据发送，功能函数封装——发送字符串、发送数组等。
-- 2、数据接收。
-- 3、HEX数据包的接收。
-- 4、HEX数据包的发送。
-- 5、文本数据包的接收。
-- 6、文本数据包的发送。
-
-
-
-
-
-# I2C
-
-- 1、软件模拟$I^2 C$通信时序，与另一个支持$I^2 C$通信的设备进行通信——读取MPU6050的数据。
-- 2、使用STM32的$I^2 C$外设来读取MPU6050的数据。
-
-
-
-
-
-# SPI
-
-- 1、软件模拟SPI通信时序，读取W25Q64。
-- 2、使用STM32的SPI外设，读取W25Q64。
-
-
-
-
-
-
-
-# RTC
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# ~~CLoin~~
-
-使用CLoin来开发Cube MX项目。得先下载CLoin。Cube MX项目需要使用SW4STM32这个工具链/IDE（STM32F4系列可以使用这个），才能使用CLoin和OpenOCD进行开发。
-
-## 环境准备
-
-MinGW：[MinGW-w64 - for 32 and 64 bit Windows - Browse /mingw-w64/mingw-w64-release at SourceForge.net](https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/)
-
-OpenOCD：[Download OpenOCD for Windows (gnutoolchains.com)](https://gnutoolchains.com/arm-eabi/openocd/)
-
-交叉编译工具链arm-eabi-gcc：[Downloads | GNU Arm Embedded Toolchain Downloads – Arm Developer](https://developer.arm.com/downloads/-/gnu-rm)
-
-下载好后配置环境变量：MinGW64的bin目录、OpenOCD 的bin目录、交叉编译工具链的arm-none-eabi目录里的bin目录。
-
-## CLoin环境准备
-
-1、toolchains：
-
-![](../G-Else/cloinImg/1.toolchains.png)
-
-2、安装OpenOCD插件。
-
-![](imghal/2.1openocd.png)
-
-3、
-
-![](imghal/2.2EME.png)
-
-OK！
-
-后续使用CLoin打开项目即可。
 
 
 

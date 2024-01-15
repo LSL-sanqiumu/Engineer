@@ -184,6 +184,12 @@ style.txt.32=font:Consolas,size:16,fore:#263238,back:#FFFFFF
 
 
 
+## 调试
+
+debug：寄存器值、变量值、单步运行......
+
+
+
 
 
 
