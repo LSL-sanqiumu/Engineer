@@ -54,6 +54,8 @@ Qt Creator的编译与调试的说明：
 
 # 1.创建项目
 
+**项目创建：**
+
 Qt Widgets Application —— 支持桌面平台的有图形用户界面（Graphic User Interface，GUI）的应用程序。  
 
 创建Qt Widgets Application项目的步骤：**1.**New File or Project → **2.**Qt Widgets Application → choose... → 3.Location，项目命名与项目目录选择 → **4.**Build System选择，qmake → **5.**Details，要创建的窗体类和头文件，（选上Generate form，勾了就会创建.ui文件而且生成的代码里会自动添加ui成员变量，如果你要用designer来设置ui就勾上，如果没有界面或者要自己在cpp里添加界面代码就不要勾） → **6.**Translation，默认，界面语言翻译配置 → **7.**Kits，32和64位都选上吧 → **8.**Summary，项目目录确认与更改 → **9.**Finished。
@@ -61,6 +63,8 @@ Qt Widgets Application —— 支持桌面平台的有图形用户界面（Graph
 创建好的项目目录的简单说明：
 
 ![](imgQT/1.界面应用程序.png)
+
+**项目基本结构说明：**
 
 `5.Details`配置中Base Class说明——QDialog、QWidget、QMainWindow的区别：
 
