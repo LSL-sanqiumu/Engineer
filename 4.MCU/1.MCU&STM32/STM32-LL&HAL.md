@@ -25,9 +25,9 @@
 
 点击这个，然后进去选择好自己需要下载的库后`Install`即可。
 
-# 基本工程
+# CubeMX的使用
 
-打开STM32CubeMX，以STM32F103C8T6为例。
+使用STM32CubeMX生成代码，以STM32F103C8T6为例。
 
 ## 1.芯片型号选择
 
@@ -125,11 +125,6 @@ delete previously generated files when not re-generated：删除以前生成但�
    - Project中：配置好项目名称、项目存放路径、使用的工具链/IDE、固件库版本等。（Keil —— ARM-MDK；EWARM —— IAR；CMake —— SW4STM32）
    - Code Generator中：前两个部分中都将第一个选中即可，其它按默认。
 
-# 学习方法
-
-1. 官方手册，会使用LL库&HAL库跑通外设。
-2. 项目，看别人的源码。
-
 # GPIO
 
 - 实现流水灯。
@@ -165,6 +160,22 @@ LL_mDelay(500);
 /* 置0 */
 LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_13);
 ```
+
+
+
+# HAL库
+
+## 库文件
+
+下载好源码文件后，HAL库的内核相关文件和库文件都在Drivers目录下，主要使用CMSIS和STM32F4xx_HAL_Driver里的文件。
+
+内核相关文件和库文件：
+
+- CMSIS：启动文件、外设寄存器描述文件、内核的寄存器描述文件、内核的配置函数、时钟配置文件。
+- STM32F4xx_HAL_Driver：里面包含了HAL库和LL库。
+- 中断：在模板示例。
+
+源文件提取和标准库的是类似的。
 
 
 

@@ -23,7 +23,9 @@ LVGL：
 
 基础控件：label、button、img、button matrix、text area。
 
+思想：层 → 屏幕 → 控件，通过属性、样式来实现个性化。事件用于触发操作。
 
+事件触发方式：单击、长按、滑动（上、下、左、右）。
 
 
 
