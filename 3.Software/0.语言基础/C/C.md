@@ -936,35 +936,6 @@ int main()
 ```
 
 ```c
-//函数成功返回1，失败返回0
-int fun()
-{
-    FIL *a,*b;//文件体
-    char *c,*d;
-    
-    a = fopen("***");
-    if(a = NULL) return 0;
-    
-    c = malloc(1000);
-    if(c = NULL) goto _q1;
-    
-    b = fopen("***");
-    if(b = NULL) goto _q2;
-    
-    d = malloc(1000);
-    if(d =NULL) goto _q3;
-    return 1;
-q3:
-    fclose(b);
-q2:
-    free(c);
-q1:
-    fclos(a);
-    return 0;
-}
-```
-
-```c
 /*
 *函数功能：返回图片信息结构体p_inf
 *    参数：图片路径字符串picture_file_path
@@ -979,16 +950,20 @@ p_info *readPicInf(char *pfilepath)
     p_info *infReturn;		//图片信息结构体，最后作为返回值
    
     fOptResult = f_open(&fileDescriptor, (const TCHAR*)pfilepath, FA_READ);
-    if ((fOptResult != FR_OK) || (fileDescriptor.obj.objsize > BMPMEMORYSIZE)) 	return NULL;
+    if ((fOptResult != FR_OK) || (fileDescriptor.obj.objsize > BMPMEMORYSIZE))
+        return NULL;
   
     infReturn = (p_inf *)malloc(sizeof(p_inf));
-    if (infReturn == NULL) goto INFRETURN_MALLOC_ERR;
+    if (infReturn == NULL) 
+        goto INFRETURN_MALLOC_ERR;
     
     infReturn->pfilestring = (char *)malloc(fileDescriptor.obj.objsize);
-    if (infReturn->pfilestring == NULL) goto INFRETURN_PFILESTRING_MALLOC_ERR;
+    if (infReturn->pfilestring == NULL) 
+        goto INFRETURN_PFILESTRING_MALLOC_ERR;
  
     fOptResult = f_read(&fileDescriptor,infReturn->pfilestring,fileDescriptor.obj.objsize, (UINT *)&readByteResult);
-    if ((fOptResult != FR_OK) || (readByteResult != fileDescriptor.obj.objsize)) goto F_READ_ERR;
+    if ((fOptResult != FR_OK) || (readByteResult != fileDescriptor.obj.objsize)) 
+        goto F_READ_ERR;
  
     infReturn->pfilesize = fileDescriptor.obj.objsize;
     
@@ -1036,15 +1011,17 @@ int arr3[]={1,2,3,[9]=9}; // 数组元素为10个
 
 5、数组声明并初始化后里面的数才会有默认初始值，只声明后再为某个元素赋值也是不会有默认初始值。
 
+
+
 ## 二维数组
 
 二维数组，即数组中存储数组。（数组中存储另一个数组的首地址常量）
 
 ``` c
-// 声明并初始化 两个二维数组内的值一致
+// 定义并初始化 两个二维数组内的值一致
 int arr1[2][3] = {1,2,3,4,5,6};
 int arr2[2][3] = {{1,2,3},{4,5,6}};
-// 先声明后初始化
+// 定义后再初始化
 int arr2[2][3];
 for(int i = 0; i < 2; i++)
 {
@@ -1163,7 +1140,7 @@ void show(char c, int num) {
 ```
 
 ```c
-/* 指针形参，传进去的将是地址值。*/
+/* 指针形参，传进去的将是地址值，指针是存储地址的一个玩意*/
 void swap(uint8_t *temp, uint8_t *humi)
 {
     uint8_t t = 0;
@@ -1328,6 +1305,8 @@ int* ptr2;
 
 4、指针分类：指向基本数据类型的指针、函数指针、结构体指针、数组指针、通用指针——`void*`。
 
+
+
 ## 指针操作
 
 指针操作：
@@ -1369,12 +1348,18 @@ if(p1 > p2){
 }
 ```
 
-**不要解引用未初始化的指针。**为什么呢？因为“创建一个指针时， 系统只分配了储存指针本身的内存， 并未分配储存数据的内存”，访问没有分配的内存，根本就是无法访问嘛，都没有那怎么访问，当然就报错了。（不要访问未分配的内存）
+**不要解引用未初始化的指针。**为什么呢？因为“创建一个指针时， 系统只分配了储存指针本身的内存， 并未分配储存数据的内存”，访问没有分配的内存，就无法安全访问，因此就很容易出错。（不要访问未分配的内存）
 
 ```c
 int* ptr;
 printf("%d", *ptr);  // 不要对未初始化的指针使用 * 来解引用，会造成错误
 ```
+
+>内存空间不是你分配了才可以使用的，只是你分配了之后使用才安全，为什么要进行对指针进行初始化呢？
+>
+>如果不初始化指针，那么指针的指向是随机的，如果引用这个野指针并修改就很有可能修改到了另一个程序的数据，然后导致这个程序的异常。因此，使用指针时一定要先进行初始化确定好指向。程序最怕滴就是不确定性。
+
+
 
 ## 指针数组
 
@@ -1391,7 +1376,7 @@ arr是数组的首元素地址，对其解引用，得到的是首地址里面�
 
 ## 指针的指针
 
-指针的指针，就是指向指针的指针，该指针中存储的地址值了另一个指针的地址。
+指针的指针，就是指向指针的指针，该指针中存储的地址值所指向的内容是另一个指针的地址。
 
 ```c
 /* 存放指针的指针及它们的取值 */
@@ -1404,6 +1389,8 @@ printf("%d\n",*p1);
 printf("%d\n",**p2);
 printf("%d\n",**p3);
 ```
+
+
 
 ## 数组指针
 
@@ -1431,7 +1418,7 @@ int main() {
 ```
 
 ```c
-/* 这样声明也行 */
+/* 这样定义也行 */
 int arr1[]={7,8,9};
 int (*p1)[] = arr1;
 int (*p2)[6] = arr1;
@@ -1443,7 +1430,7 @@ printf("%d", *(*p2+1));
 int main(void)
 {
     int a[3] = {1,2,3};
-    int (*arr)[3];
+    int (*arr)[3] = a;
     /* 三个地址是一样的 */
     printf("%p\n", *arr);
     printf("%p\n", a);
@@ -1487,12 +1474,12 @@ int main(void)
 }
 ```
 
-二维数组指针，配合三维数组使用。
+同理，二维数组指针，配合三维数组使用。
 
 总结：
 
-- 数组指针指向二维数组是，是将二维数组的首地址赋给了数组指针，这个首地址存储着另一个数组的首地址，这样解引用后得到的是里面存储的另一个数组的首地址，再解引用就能得到这个地址指向的内存中的值了。（二维数组中理解起来是最方便的）
-- 那将一维数组的首地址赋给数组指针，为什么还是要两次解引用才能访问到数组中的值呢？为了方便理解，一维数组首地址赋给指针变量时，看作是`&arr`赋值过去即可，方便理解一些。
+- 数组指针指向二维数组，是将二维数组的首地址赋给了数组指针，这个首地址存储着另一个数组的首地址，这样解引用后得到的是里面存储的另一个数组的首地址，再解引用就能得到这个地址指向的内存中的值了。（二维数组中理解起来是最方便的）
+- 那将一维数组的首地址赋给数组指针，为什么还是要两次解引用才能访问到数组中的值呢？为了方便理解，一维数组首地址赋给指针变量时，看作是`&arr`赋值过去即可，方便理解一些（对数组进行取地址操作得到一个数组指针，然后将得到的数组指针赋值给这个数组指针，因此通过两次解引用操作取出值）。
 
 
 
@@ -1541,11 +1528,11 @@ void test4(int (*ptr)[]){
 /* 不要直接返回指针 */
 char* test(void){
     char* str = "string";
-    /* 返回局部数组地址，函数执行完毕就会被释放，返回的地址指向的内存内的内容可能不再是预期的 */
+    /* 返回局部数组地址，函数执行完毕就会被释放，返回的地址指向的内存内的内容可能不再是预期的，存在风险 */
     return str;  
 }
 
-/* 要使用动态内存分配，free()后或程序结束后内存才释放 */
+/* 使用动态内存分配，free()后或程序结束后分配的内存才释放 */
 #include <string.h>
 char* test(void){
     char* str;
@@ -1562,7 +1549,7 @@ void main(){
 
 **4、函数指针：**
 
-程序运行时也会将函数加载到内存中，函数的名字就是函数的首地址，即函数入口地址，函数指针就是存放函数入口地址的指针。
+程序运行时也会将函数加载到内存中，函数的名字就是指函数的首地址，即函数入口地址，函数指针就是存放函数入口地址的指针。
 
 ```c
 /* 函数指针变量定义：`函数返回值类型 (*函数指针变量名)(形参列表)` */
@@ -1688,6 +1675,8 @@ int process(int (*p)(int,int), int x, int y){
 }
 ```
 
+
+
 ## void*与NULL
 
 `void*`，是一个通用指针，任何类型的指针都可以给 `void*` 类型的指针赋值。
@@ -1761,7 +1750,7 @@ int set_callback(fun_callback_t cb)
 
 >回调函数在项目中的应用，大多数在应用分层和数据分流中使用最多，就比如A应用：在串口一直读数据，数据不断地产生；B应用：需要拿到A产生的数据加工，再传给别的应用。
 
-回调函数的作用：解耦。（通过传入不同的函数指针，使得函数可以灵活地实现多种功能而不需要改变原函数的实现）
+回调函数的作用：解耦。（通过传入不同的函数指针，使得函数可以灵活地实现多种功能而不需要改变原函数的实现（变的只会是传入的这个函数变量）。）
 
 
 
@@ -1772,9 +1761,9 @@ int set_callback(fun_callback_t cb)
 C语言中的指针可以指向一块内存，如果这块内存稍后被操作系统回收（被释放），但是指针仍然指向这块内存，那么，此时该指针就是“悬空指针”。下面这段C语言代码是一个例子，请看：
 
 ```c
-void*p =malloc(size);
+void* p = malloc(size);
 assert(p);
-free(p);        /* 现在 p 是“悬空指针” */
+free(p);        /* 现在 p 是“悬空指针”，p指向的将是一块被释放了的内存 */
 ```
 
 C语言中的“悬空指针”会引发不可预知的错误，而且这种错误一旦发生，很难定位。这是因为在 free(p) 之后，p 指针仍然指向之前分配的内存，如果这块内存暂时可以被程序访问并且不会造成冲突，那么之后使用 p 并不会引发错误。
@@ -1876,7 +1865,7 @@ NULL==ptr
 
 > 内存泄漏（**memory leak**）是指你向系统申请分配内存进行使用（new/malloc），然后系统在堆内存中给这个对象申请一块内存空间，但当我们使用完了却没有释放这些内存（没有delete/free），导致这个不使用的对象一直占据内存单元，造成系统不能再把它分配给需要的程序。 
 >
-> 一次内存泄漏的危害可以忽略不计，但是内存泄漏堆积则后果很严重，无论多少内存，迟早会被占完，造成内存泄漏。
+> 一次内存泄漏的危害可以忽略不计，但是内存泄漏堆积则后果很严重，无论多少内存，迟早会被占完，造成内存溢出。
 
 内存泄漏（**memory leak**）：向系统申请分配内存（new/malloc）进行使用，当使用完毕后没有释放这些内存（没有delete/free），导致这些内存变为了无法分配的内存。这就是内存泄漏。（内存泄漏，相当于丢失 —— 丢失了一些内存）
 
@@ -2210,6 +2199,8 @@ cma，全称（contiguous memory allocation），**在内存初始化时预留�
 int n = 12;
 double* ptd = (double *) malloc(n * sizeof(double));
 ```
+
+
 
 ## 大小端
 

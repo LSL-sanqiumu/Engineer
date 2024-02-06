@@ -165,17 +165,17 @@ LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_13);
 
 # HAL库
 
-## 库文件
-
 下载好源码文件后，HAL库的内核相关文件和库文件都在Drivers目录下，主要使用CMSIS和STM32F4xx_HAL_Driver里的文件。
 
 内核相关文件和库文件：
 
 - CMSIS：启动文件、外设寄存器描述文件、内核的寄存器描述文件、内核的配置函数、时钟配置文件。
 - STM32F4xx_HAL_Driver：里面包含了HAL库和LL库。
-- 中断：在模板示例。
+- 中断：在模板示例，`stm32f4xx_it.h`和`stm32f4xx_it.c`。
 
 源文件提取和标准库的是类似的。
+
+C/C++添加宏定义：`USE_HAL_DRIVER,STM32F411xE`，STM32F411CEU6的。
 
 
 
@@ -189,7 +189,13 @@ LL_GPIO_ResetOutputPin(GPIOC, LL_GPIO_PIN_13);
 
 
 
+# 怎么学
 
+HAL库和LL库的API说明文档。
+
+芯片使用手册。
+
+网上教学视频，只要是帮忙入门，之后尽快摆脱教学视频去学习，根据官方提供的资料来快速上手。
 
 
 

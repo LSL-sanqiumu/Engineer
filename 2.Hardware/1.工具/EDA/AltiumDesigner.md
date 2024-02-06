@@ -78,7 +78,7 @@ PCB：layout、emc、阻抗匹配等。
 
 - 对于**IC类**元件模型的创建：放置矩形外框，然后放置管脚。
 
-- 对于STM32之类的比较多引脚的芯片：查看芯片数据手册，找到引脚图，然后使用封装向导创建元件 —— `工具 → Symbol Wizard`，设置引脚数量和引脚排列，修改Electricl Type为Passive，然后填入管脚名称(Display Name)，填写完后点击 Place Symbol 就可以放置到原理图库中了。
+- 对于STM32之类的比较多引脚的芯片：查看芯片数据手册，找到引脚图，然后使用封装向导创建元件 —— `工具 → Symbol Wizard`，设置引脚数量和引脚排列，修改Electricl Type为Passive（表示引脚即可输入也可输出，忽略引脚电气检查），然后填入管脚名称(Display Name)，填写完后点击 Place Symbol 就可以放置到原理图库中了。
 
 - 对于一些管脚名称有上划线的，在字母后面加上反斜线即可，例如：`E\N\` → $\overline{EN}$。
 
