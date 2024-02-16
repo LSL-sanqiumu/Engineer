@@ -1210,6 +1210,7 @@ int main() {
         printf("%d\t", array[i]);
     }
     free(array);
+   	array = 0;
     return 0;
 }
 ```
@@ -1889,14 +1890,16 @@ char* s = "string literal";
 ```c
 #define ISSTRING "我是一个字符串"
 #define MAXLENGTH 81
-/* 数组表示法，字符串数组的数组名是数组首元素的地址，不能进行自加自减操作 */
+/* 数组表示法，注意字符串数组的数组名是数组首元素的地址常量，不能进行自加自减操作 */
 char str[] = {'a','\0'};      /* 最后不加'\0'则只是一个字符数组 */
-char str[] = "我是一个字符串"; /* 将字符串字面量拷贝到数组中，末尾会自动加上'\0' */
+char str[] = "我是一个字符串"; /* 表示将字符串字面量拷贝到数组中，末尾会自动加上'\0' */
 const char ar1[] = "Something is pointing at me.";  
 const char ar2[MAXLENGTH] = "Something is pointing at me.";
 printf("%s", str);
+
+
 /* 指针表示法，使用字面量初始化字符串，该字符串为只读字符串 */
-const char* pt1 = "Something is pointing at me."; /* 使用const使得不能通过指针修改字符内容 */
+const char* pt1 = str1; /* 使用const使得不能通过指针修改字符内容 */
 /* 指针表示法创建字符串，可更改指针指向，注意指针指向字符串字面量时不能通过指针修改字符串字面量的值 */
 char* s = "string";
 printf("%s",ar1);
@@ -1998,6 +2001,7 @@ C 标准用“内部链接的文件作用域”描述仅限于一个翻译单元
 
 - 线性存储期：多线程，表示线程的，具有线性存储期的对象，声明到线程结束前一直存在。（_Thread_local声明一个对象时， 每个线程都获得该变量的私有备份  ）
 - 自动存储期：块作用域的变量通常都是具有自动存储期。（例如函数中的变量在调用时才初始化，函数结束时便销毁；局部变量都是自动类别；块级作用域内使用static，就能使变量具有静态存储期）
+- 动态分配存储期：是不是程序员手动分配内存，手动释放内存？malloc()、free()等函数？
 
 ---
 
@@ -2578,6 +2582,28 @@ const zip q = 8;       // const const int q = 8;
 - 全局下修饰基本数据类型变量，变量不能被修改。
 - 局部下修饰基本数据类型变量，可以通过指针对变量进行修改。
 - 局部下同时使用static、const修饰基本数据类型变量，变量不能被修改。
+
+```c
+void main(){
+    const int a = 12;
+    //a=22; // 会报错
+    int* ap = &a;
+    *ap = 22;
+    printf("%d", a); // 22
+    
+    const int arr[] = {1,2,3};
+    //arr[0] = 2;
+    int* arrp = arr;
+    arrp[0] = 2;
+    printf("%d", arr[0]);
+    
+    const char str[] = {'1','2','3','\0'};
+    //str[0] = '2';
+    char* sp = str;
+    sp[0] = '2';
+    printf("%s", str);
+}
+```
 
 用const修饰指针：
 
