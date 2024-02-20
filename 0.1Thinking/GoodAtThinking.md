@@ -755,7 +755,27 @@ R1至R10上的总压降为20000/1001*1000≈20KV；每个10M电阻的压降为20
 
 
 
+## 自学的话先学数电还是模电?
 
+
+
+先学模电，因为数电是建立在模电基础上的，数电里面也有很多关于[三极管](https://www.zhihu.com/search?q=三极管&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3380608763})的，这些东西你在学习模电之后在学数电就很简单。
+
+模电教材推荐华成英老师的，推荐看b站[郑益慧](https://www.zhihu.com/search?q=郑益慧&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3380608763})老师的视频，理解他说的每句话的含义，即使考研都没啥问题的。他讲的本来也通俗易懂，如果连他的视频都听不懂，个人觉得你自学可能更没戏。
+
+数电教材推荐闫石老师或者康华光老师的，国内其他数电教材少看，有的书连器件的名字都不对，还被定为某些学校考研教材，想想都可笑。视频推荐[王红](https://www.zhihu.com/search?q=王红&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3380608763})的，有了郑益慧老师的模电，在学王红的数电，基本没啥问题，而且王红的数电个人认为是b站最好的，而且也是数电视频中讲的最深的。
+
+我当时电路就是为了应付考试，那时候再搞[数学建模](https://www.zhihu.com/search?q=数学建模&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3380608763})，没咋学，就刷题过了期末。后面模电的时候也差不多在补电路，跟[郑老师](https://www.zhihu.com/search?q=郑老师&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3380608763})视频大概学了半学期吧。没集都看了几遍，中间穿插看教材，当时他说的每句话都理解到了他想表达的意思，边学边在群里解答问题，那半学期过后，模电基本上没啥问题，拿到电路就能分析。
+
+然后寒假学了自学数电，因为看了几集王红视频，定了2周搞定数电，其实不是我多厉害，是我看了王红的视频，讲课方式确实适合我的思维，而且讲的三极管，[mos管](https://www.zhihu.com/search?q=mos管&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3380608763})这些电路也是想学的。然后就2周学完了数电（可编程逻辑器件和[硬件描述语言](https://www.zhihu.com/search?q=硬件描述语言&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3380608763})章节没学，因为这个时候我已经决定数电学了之后学fpga，所以这两部分直接放后一阶段了），闫石教材上的题这两周也是全部刷完了的。
+
+可能有人觉得两周根本做不完，其实我学习的方式是这样的，早晨起床会把昨天看过视频2倍速再看你遍，昨天没理解到的，看了书之后还有没有疑问，然后去解决。视频过完后，前一天的基本没啥问题了，然后以1.5倍速看今天需要学的内容，这一遍不需要做笔记，认真听就行，能理解多少理解多少，不理解的地方要有印象。视频看完，就开始看书，把视频内容对应的书上内容全部看完，这个时候在做笔记，把自己的理解写出来，回想看视频老师为啥那样说，他想表达什么意思，没理解的地方现在能不能理解了，这些都要想清楚，然后刷一下课后的题。第二天再把今天看的视频过一遍，这次就基本上解决第一次没看书就看视频的时候的疑问了。
+
+这两周过的并没有那么简单，闫石的书是有五百多页的，每天要学的东西特别多，基本上早上八点开始，晚上可能到凌晨一两点。我记得最后一天学adc和dac的时候，我那个时候是感冒了，本来十二点开始睡觉的，结果睡不着，因为还没学完，压力就会特别大，然后到了2点还没睡着。就起床开始看视频学，大概4点的时候最后一点视频过完吧，然后才去睡觉，第二天再把书看一下就结束了。
+
+第二学期疫情在家嘛，都上网课，同学才学数电我已经学完了，课基本上没去上过，那段时间在网络群里回答问题比较多，网上期末考试懂得都懂，体会了本科以上所有大分段难度的学校的数电考试，无往不利。
+
+当你真的在规定时间内完成后，那种感觉真的爽，尤其是时间很局限。这也是为什么后面我敢说一周学完[微机原理](https://www.zhihu.com/search?q=微机原理&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3380608763})的原因，因为我又找到了一个适合我学习方式的视频，周佳社老师的微机原理，那个时候我已经有了数电的坚实基础，再加上周佳社老师的讲解，微机原理的硬件部分就水到渠成，根本没有难度。硬件没问题后，[8086](https://www.zhihu.com/search?q=8086&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"answer"%2C"sourceId"%3A3380608763})的汇编也就不会有问题，一周搞定就比较轻松了。
 
 
 
