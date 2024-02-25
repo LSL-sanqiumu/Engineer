@@ -236,3 +236,8 @@
 >来源：知乎
 >著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
+# MyLearningMethods
+
+![](12.Text/images/learning-methods.svg)
+
+![](12.Text/images/学习闭环.png)
