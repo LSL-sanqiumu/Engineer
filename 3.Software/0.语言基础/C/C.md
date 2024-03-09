@@ -1279,7 +1279,7 @@ printf("%d",*ptr);
 ```
 
 ```c
-/* 对于数组和函数，有着arr==&arr这样的关系，所以本质上给指针初始化或赋值都使用了& */
+/* 对于数组和函数，有着arr==&arr这样的关系，所以本质上用它们给指针初始化或赋值都使用了& */
 int main(void)
 {
     int arr[10] = {[3]=3};
@@ -1344,6 +1344,7 @@ int* ptr2;
 ```c
 #include <stdio.h>
 int main() {
+    int num = 18;
     int arr[] = {3,6,9};
     int* ptr;
     ptr = arr;
@@ -1351,6 +1352,16 @@ int main() {
     printf("%d\n",*(ptr+2)); // 9
     printf("%d\n",*(++ptr)); // 6
     printf("%d\n",*ptr);     // 6
+    printf("%p\n",&num);     // 显示表示地址的一个十六进制数
+    return 0;
+}
+```
+
+```c
+#include <stdio.h>
+int main() {
+    int* p = (int*)0x33F;
+    printf("%p\n",p); // 64位平台下输出：000000000000033F
     return 0;
 }
 ```
