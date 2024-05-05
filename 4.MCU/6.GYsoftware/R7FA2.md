@@ -1,14 +1,14 @@
-# RA2
+# 		RA2
 
 ## 概述
 
 ![](imgR7FA2/RA2.png)
 
-![](imgR7FA2/R7FA2E1.png)
+<img src="imgR7FA2/R7FA2E1.png" style="zoom: 80%;" />
 
 R7FA2E1A92DFM：
 
-- flash：128KB。
+- FLASH：128KB；SREAM：16KB。data flash：4KB。（FLASH：存储代码和常量；SRAM：存储程序运行过程中产生的临时数据；data flash：类似51里的EEPROM。）
 - -40°C~86°C。
 - Consumer applications。
 - 64Pin——0.5mm。
@@ -20,11 +20,7 @@ RA系列开发与调试工具：
 - e2 stdio：可用图形化配置工具，生成的代码也简洁高效。（选择快速安装即可，默认）
 - Keil。
 
-RA系列库：FSP库（灵活配置软件包）。
-
-实时操作系统：支持FreeRTOS。
-
-烧录：J-Link或串口烧录。
+RA系列库：FSP库（灵活配置软件包）。实时操作系统：支持FreeRTOS。烧录：SWD或串口烧录。
 
 
 
@@ -72,42 +68,65 @@ RA系列库：FSP库（灵活配置软件包）。
 
 
 
-## 寄存器开发
+## J-Link RTT View
 
-通过指针直接访问寄存器进行功能开发。
+安装J-Link后，找到`SEGGER_RTT_V794f.zip`文件。解压后将Config目录里的SEGGER_RTT_Conf.h放到RTT文件夹里，里面的五个文件就是需要使用到的。
 
-寄存器到库的转变：
+将这五个文件放入到工程中编译，添加头文件`#include "SEGGER_RTT.h"`即可使用相关函数来打印信息，J-Link的上位机软件RTT Viewer中可用来接收或发送信息，RTT Logger可用于导出打印信息到日志文件。
 
-- 通过枚举封装地址常量、端口、引脚、功能配置参数、常用常量等。
-- 通过结构体封装外设的所有初始化参数。
-- 通过初始化函数来封装对外设初始化的具体操作。
-- 通过函数来封装对外设寄存器的数据的读取操作。
+RTT Viewer：选中USB、目标MCU设备即可，其它默认。
+
+使用示例：
+
+```c
+#include "SEGGER_RTT.h"
+int main(void)
+{
+    SEGGER_RTT_WriteString(0, "Hello World from SEGGER!\r\n");
+}
+```
+
+```c
+/* STM32->RTT Viewer */
+ SEGGER_RTT_ConfigUpBuffer(0, "RTTUP", NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_SKIP);
+ SEGGER_RTT_ConfigUpBuffer(1, "RTTUP", NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_SKIP);
+ 
+  /* RTT Viewer->STM32 */ 
+ SEGGER_RTT_ConfigDownBuffer(0, "RTTDOWN", NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_SKIP);
+ SEGGER_RTT_ConfigDownBuffer(1, "RTTDOWN", NULL, 0, SEGGER_RTT_MODE_NO_BLOCK_SKIP);
+ 
+ printf("%s\r\n","Hello World from SEGGER, Terminal 0!");
+ SEGGER_RTT_SetTerminal(0);
+ SEGGER_RTT_WriteString(0, "Hello World from SEGGER, Terminal 0!\r\n");
+ 
+ printf("%s\r\n","Hello World from SEGGER, Terminal 1!"); 
+ SEGGER_RTT_SetTerminal(1);
+ SEGGER_RTT_WriteString(0, "Hello World from SEGGER, Terminal 1!\r\n");
+ SEGGER_RTT_printf(0, RTT_CTRL_TEXT_GREEN"Hello World from SEGGER, Terminal 1!\r\n");
+```
+
+重定向printf：
+
+```c
+int fputc(int ch, FILE *f)
+{
+    #if defined (RTT)
+     SEGGER_RTT_PutChar(0, ch); 
+    #else
+     /*清除标志位*/
+     USART_ClearFlag(USART1,USART_FLAG_TC);
+     /* 发送一个字节数据到USART1 */
+     USART_SendData(USART1, (uint8_t) ch);
+     /* 等待发送完毕 */
+     while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET); 
+    #endif
+
+     return (ch);
+}
 
 
-
-## FSP库
-
-### 介绍
-
->**瑞萨电子灵活配置软件包** (FSP) 是用于嵌入式系统设计的高质量增强型软件包，支持瑞萨电子 RA 产品家族 Arm 微控制器，提供用户友好的界面且可灵活扩展，确保从入门级到高性能的整个 RA 微控制器的软件兼容性。
->
->FSP 全称为 “Flexible Software Package”，中文译为“灵活配置软件包”。FSP 旨在以较低的内存占用量提供快速高效的驱动程序和协议栈。 FSP 集成了中间件协议栈、独立于 RTOS 的硬件抽象层（HAL）驱动程序， 以及最基础的板级支持包（BSP）驱动程序。FSP 还支持 FreeRTOS™ 实时操作系统（RTOS）。
->
->FSP基于C99编写。
-
-### 架构
-
-![](imgR7FA2/fsp_arch1.png)
-
-![](imgR7FA2/fsp_struct.png)
-
-### 开发
-
-1. 创建工程。
-2. 通过图形化界面配置引脚。
-3. 通过开发帮助找到相关FSP库函数。
-4. src里面建立模块文件夹，创建模块的头文件和源文件，结合FSP库函数编写功能代码。
-5. `hal_entry()`函数里调用功能函数以实现各种功能。
+printf("printf: %s\r\n","Hello World from SEGGER, Terminal 0!");
+```
 
 
 
@@ -146,7 +165,113 @@ File → New → 瑞萨C/C++项目 → Renesas RA → Renesas RA C/C++ Project �
 
 
 
+# 寄存器开发
 
+通过指针直接访问寄存器进行功能开发。例如操作GPIO口，通过查阅硬件手册找到相关寄存器，操作寄存器完成对IO口的开放、配置、输入读取、输出等操作。
+
+寄存器到库的转变：
+
+- 通过枚举封装端口地址、引脚、片上外设功能配置参数、常用常量等。
+- 通过结构体封装片上外设的所有初始化参数。
+- 通过初始化函数来封装对外设初始化的具体操作。
+- 通过函数来封装对外设寄存器的数据的读取操作。
+
+寄存器数据重映射 → 封装 → 函数 → 函数库：
+
+- 访问到寄存器，从寄存器数据读取数据，往寄存器写入数据。
+
+```c
+while(1){
+    *(volatile uint32_t*)(0x40040000 + 0x0020 * 3) |= 0x00100010;
+    R_BSP_SoftwareDelay(500, BSP_DELAY_UNITS_MILLISECONDS);
+
+    *(volatile uint32_t*)(0x40040000 + 0x0020 * 3) &= 0x11011101;
+    R_BSP_SoftwareDelay(500, BSP_DELAY_UNITS_MILLISECONDS);
+}
+```
+
+
+
+# FSP库
+
+## 介绍
+
+>**瑞萨电子灵活配置软件包** (FSP) 是用于嵌入式系统设计的高质量增强型软件包，支持瑞萨电子 RA 产品家族 Arm 微控制器，提供用户友好的界面且可灵活扩展，确保从入门级到高性能的整个 RA 微控制器的软件兼容性。
+>
+>FSP 全称为 “Flexible Software Package”，中文译为“灵活配置软件包”。FSP 旨在以较低的内存占用量提供快速高效的驱动程序和协议栈。 FSP 集成了中间件协议栈、独立于 RTOS 的硬件抽象层（HAL）驱动程序， 以及最基础的板级支持包（BSP）驱动程序。FSP 还支持 FreeRTOS™ 实时操作系统（RTOS）。
+>
+>FSP基于C99编写。
+
+## 架构
+
+着重点：BSP、HAL、FreeRTOS、MQTT、WiFi、BLE。
+
+![](imgR7FA2/fsp_arch1.png)
+
+![](imgR7FA2/fsp_struct.png)
+
+## 开发
+
+1. 创建工程。
+2. 通过图形化界面配置引脚。
+3. 通过开发帮助找到相关FSP库函数。
+4. src里面建立模块文件夹，创建模块的头文件和源文件，结合FSP库函数编写功能代码。
+5. `hal_entry()`函数里调用功能函数以实现各种功能。
+
+需要掌握FSP库的底层实现逻辑，这样可以更好地熟悉FSP库的API。
+
+## 命名
+
+BSP：BSP 函数名称以 **R_BSP_** 开头，BSP 宏以 **BSP_** 开头，数据类型定义以 **_bsp** 开头。
+
+HAL 层的函数的名称以 **R_** 开头，格式一般为**` R_<MODULE>_<Function>`**。 默认情况下，所有驱动函数都是非阻塞的，并返回执行状态。驱动函数本身不分配任何内存，调用时需要将内存传递给函数。
+
+FSP 中间件函数的名称命名格式一般为：**`RM_<MODULE>_<Function>`**。
+
+应用层：自己定。
+
+- `R_BSP_xxx`： BSP 函数的前缀，例如 `R_BSP_VersionGet()`。
+- `BSP_xxx`： BSP 宏的前缀，例如 `BSP_IO_LEVEL_LOW`。
+- `FSP_xxx`： 常用的 FSP的前缀，主要定义错误代码（例如 `FSP_ERR_INVALID_ARGUMENT`）和版本信息（例如 `FSP_VERSION_BUILD`）。
+- ` g_<interface>_on_<instance>`： 实例的常量全局结构体的名称，用这个结构体管理 API 的各个实现函数，比如 `g_ioport_on_ioport` 结构体里是` r_ioport.c` 实现的各个 API 函数。
+- `r_<interface>_api.h`：接口模块头文件的名称，例如` r_spi_api.h`。
+- `R_<MODULE>_<Function>`： FSP 驱动程序 API 的名称，例如 `R_SPI_WriteRead()`。
+- `RM_<MODULE>_<Function>`： 中间件函数的名称，例如 `RM_BLE_ABS_Open()`。  
+
+
+
+
+
+## 理念
+
+FSP库的理念：（其实就是高内聚低耦合的实践）
+
+- 配置与接口分离：外设的配置被封装进结构体游离接口函数之外，配置传入接口函数从而实现外设硬件的初始化与相关寄存器操作，也就是说接口函数的一些配置参数被抽离出来了，这样更改配置时就不用去函数内部更改了 —— 即不改变函数本身。（接口规定了做什么，是一系列方法的声明。FSP中通常会将接口集合到一个结构体中，构建成一个接口集合）
+- 接口与实例分离：实例是指对象的具体表示，C语言中可将结构体视为一个类，而结构体变量就是一个实例。FSP中的模块实例往往包含配置、接口和模块标记，通过模块实例去调用里面的接口和配置信息从而来完成应用层的操作。
+
+配置 + 功能接口 → 实例 → 应用层调用实例内容以实现需求。
+
+总结：
+
+- 配置放一边，函数声明放一边，函数实现放一边。
+- 配置信息集合成一个配置结构体；函数构建一个接口集合；整个外设模块看成是一个对象，里面包含了配置信息和接口实例，当使用某个外设模块时，通过调用这个对象的配置信息和接口实例即可。
+
+
+
+## 术语
+
+FSP库中的一些术语：
+
+- 模块-Module：整个外设驱动程序、某块功能实现的整体等。
+- 模块实例-Module Instance：单个、独立的实例化配置模块。在FSP中，其实就是个结构体常量，里面通常包含配置信息和接口信息，通过调用实例的配置信息和接口信息来实现各种操作，比如GPIO模块，通过其实例可以操作引脚。
+- 接口-Interfaces：接口是一系列方法的声明（函数声明），FSP中会使用结构体构建一个接口集合。（xxx.h）
+- 实例-Instances：接口规定了有哪些功能，而实例则是实现这些功能，说白了就是函数实现。（xxx.c）
+- 驱动程序-Drivers：驱动程序是一种特定类型的模块，可以直接修改 RA 产品家族MCU 上的寄存器。
+- 堆叠-Stacks：这个单词很容易跟 C 语言里的堆（heap）、栈（stack）混淆，但是在这里它不是堆栈的意思。 FSP 架构所采用的设计方式是，模块可以协同工作以形成一个堆叠。堆叠就是由顶层模块及其所有依赖项组成，**简单地说就是多个有依赖关系的模块**。  （比如I2C模块，需要依赖GPIO模块）
+- 应用程序-Application：用户编写与维护的代码。
+- 回调函数-Callback Functions：使用函数指针传入函数中的再函数内部调用的函数，通常在函数内部还对其有着事件约束。
+
+总结：FSP库是应用面向对象编程思想来设计的。
 
 # CGC
 
@@ -163,9 +288,27 @@ RA2E1的时钟：
 
 CGC：clock generation circuit，即时钟生成电路，通常称之为“时钟控制电路”。
 
+可通过图形化配置来进行时钟配置。
+
 # IO
 
-寄存器：
+## 概述
+
+
+
+
+
+
+
+## 寄存器操作
+
+
+
+
+
+
+
+## FSP快哭
 
 `r_ioport.h`、`r_ioport.c`：
 
