@@ -134,7 +134,11 @@ printf("printf: %s\r\n","Hello World from SEGGER, Terminal 0!");
 
 File → New → 瑞萨C/C++项目 → Renesas RA → Renesas RA C/C++ Project → 项目名称 → 选择芯片型号（RA2E1A92DFM） → Executable → Bare Metal - Minimal  → Finish。
 
+工程迁移：
 
+1. 复制工程并重命名。
+2. 删除里面的一些配置文件，工程里带项目名称的文件都删除掉，然后使用文件搜索功能输入工程名称头几个关键字即可，将搜索发现的文件都给删除掉。
+3. 然后打开e2s，然后点击`File → Import`，将项目导入进去即可。
 
 # 启动文件
 
@@ -281,7 +285,7 @@ RA2E1的时钟：
 - 副时钟（SOSC）：32.768kHz。（需外接晶体振荡器，通常为RTC准备的）
 - 高速片上振荡器（HOCO）：24、32、48、64MHz。
 - 中速片上振荡器（MOCO）：8MHz。
-- 低俗片上振荡器（LOCO）：32.768kHz。（RTC）
+- 低速片上振荡器（LOCO）：32.768kHz。（RTC）
 - HOCO、MOCO、LOCO时钟微调功能：
 - IWTD专用片上振荡器：15kHz。
 - 支持时钟信号输出。
@@ -290,7 +294,7 @@ CGC：clock generation circuit，即时钟生成电路，通常称之为“时�
 
 可通过图形化配置来进行时钟配置。
 
-# IO
+# IO Ports
 
 ## 概述
 
@@ -308,7 +312,7 @@ CGC：clock generation circuit，即时钟生成电路，通常称之为“时�
 
 
 
-## FSP快哭
+## FSP
 
 `r_ioport.h`、`r_ioport.c`：
 
@@ -336,27 +340,39 @@ fsp_err_t R_IOPORT_PortWrite(ioport_ctrl_t * const p_ctrl, bsp_io_port_t port, i
 
 
 
-# ICU
+# ICU-EXTI
 
 ICU（Interrupt Controller Unit），中断控制单元。
 
-## NVIC
+
+
+
+
+# Timer
+
+## GPT
+
+通用PWM定时器。
+
+
+
+## AGT
+
+低功耗异步通用定时器。
+
+
+
+## WDT
 
 
 
 
 
+## IWDT
 
 
 
-
-## 中断向量表
-
-
-
-
-
-# 系统滴答定时器
+# SysTick
 
 
 
@@ -400,6 +416,8 @@ ICU（Interrupt Controller Unit），中断控制单元。
 
 
 
+
+
 # I2C
 
 
@@ -410,15 +428,15 @@ ICU（Interrupt Controller Unit），中断控制单元。
 
 
 
-# 低功耗模式
+# LPM
+
+LowPowerModes
 
 
 
 
 
-
-
-
+# RTC
 
 
 
