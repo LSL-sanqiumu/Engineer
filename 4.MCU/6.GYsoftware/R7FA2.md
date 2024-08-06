@@ -4,7 +4,9 @@
 
 ![](imgR7FA2/RA2.png)
 
-<img src="imgR7FA2/R7FA2E1.png" style="zoom: 80%;" />
+<img src="imgR7FA2/R7FA2E1.png" style="zoom: 50%;" />
+
+<img src="imgR7FA2/R7FA2E1_.png" style="zoom:67%;" />
 
 R7FA2E1A92DFM：
 
@@ -13,11 +15,13 @@ R7FA2E1A92DFM：
 - Consumer applications。
 - 64Pin——0.5mm。
 
+
+
 ## 开发工具与烧录
 
 RA系列开发与调试工具：
 
-- e2 stdio：可用图形化配置工具，生成的代码也简洁高效。（选择快速安装即可，默认）
+- e2 stdio：可用图形化配置工具，生成的代码也简洁高效。（选择快速安装该工具即可，默认选项安装）
 - Keil。
 
 RA系列库：FSP库（灵活配置软件包）。实时操作系统：支持FreeRTOS。烧录：SWD或串口烧录。
@@ -38,11 +42,11 @@ RA系列库：FSP库（灵活配置软件包）。实时操作系统：支持Fre
 
 寄存器：有特定的功能的内存单元，该内存单元内的每一位通常都有相对应的控制功能。
 
-寄存器映射：给已分配好地址(通过存储器映射实现)的有特定功能的内存单元取别名的过程。
+寄存器映射：给已分配好地址（通过存储器映射实现）的有特定功能的内存单元取别名的过程。
 
 >寄存器映射是在存储器映射的基础上进行的。
 >
->以STM32为例，操作硬件本质上就是操作寄存器。**在存储器片上外设区域，四字节为一个单元，每个单元对应不同的功能。**当我们控制这些单元时就可以驱动外设工作，我们可以找到每个单元的起始地址，然后通过C 语言指针的操作方式来访问这些单元。但若每次都是通过这种方式访问地址，不好记忆且易出错。**这时我们可以根据每个单元功能的不同，以功能为名给这个内存单元取一个别名，这个别名实质上就是寄存器名字。给已分配好地址(通过存储器映射实现)的有特定功能的内存单元取别名的过程就叫寄存器映射。**
+>以STM32为例，操作硬件本质上就是操作寄存器。**在存储器片上外设区域，四字节为一个单元，每个单元对应不同的功能。**当我们控制这些单元时就可以驱动外设工作，我们可以找到每个单元的起始地址，然后通过C语言指针的操作方式来访问这些单元。但若每次都是通过这种方式访问地址，不好记忆且易出错。**这时我们可以根据每个单元功能的不同，以功能为名给这个内存单元取一个别名，这个别名实质上就是寄存器名字。给已分配好地址(通过存储器映射实现)的有特定功能的内存单元取别名的过程就叫寄存器映射。**
 >
 >原文链接：https://blog.csdn.net/FRIGIDWINTER/article/details/106826511
 
@@ -57,6 +61,8 @@ RA系列库：FSP库（灵活配置软件包）。实时操作系统：支持Fre
 >**总结：地址总线控制访问哪个存储单元，控制器控制写入或读出，数据总线是数据进出的通道。**（通常一个地址对应一个存储单元，一个存储单元即1byte=8bit。但有的硬件会做特殊处理，如STM32会把一片内存映射成位带，一个地址对应1位。）
 >
 >32位平台下是32位地址（$2^{32个}地址$），$2^{32}=4*2^{30}=4GB$，即最大可支持4GB的线性地址空间。
+>
+>计算机组成原理里有很好的解释。
 
 瑞萨RA2单片机中，一个地址对应1bit，存储器片上外设区域，四字节为一个内存单元。
 
@@ -130,7 +136,9 @@ printf("printf: %s\r\n","Hello World from SEGGER, Terminal 0!");
 
 
 
-# 工程创建
+# e2 Stdio
+
+## 工程创建
 
 File → New → 瑞萨C/C++项目 → Renesas RA → Renesas RA C/C++ Project → 项目名称 → 选择芯片型号（RA2E1A92DFM） → Executable → Bare Metal - Minimal  → Finish。
 
@@ -139,6 +147,131 @@ File → New → 瑞萨C/C++项目 → Renesas RA → Renesas RA C/C++ Project �
 1. 复制工程并重命名。
 2. 删除里面的一些配置文件，工程里带项目名称的文件都删除掉，然后使用文件搜索功能输入工程名称头几个关键字即可，将搜索发现的文件都给删除掉。
 3. 然后打开e2s，然后点击`File → Import`，将项目导入进去即可。
+
+
+
+## 工程设置
+
+字体：
+
+- 放大：`Ctrl + shift + "+"`。
+- 缩小：`Ctrl + "-"`。
+
+
+
+
+
+## 图形配置
+
+可用于配置各种外设，时钟、IO口、SPI、I2C、RTC、timer等。
+
+
+
+
+
+
+
+## 编译&构建
+
+编译&构建：点击小锤子。
+
+![](imgR7FA2/构建与编译.png)
+
+摘自：[text data bss dec 代表的含义 - K_Code - 博客园 (cnblogs.com)](https://www.cnblogs.com/z3286586/p/14817832.html)
+
+其它资料：[text、data、bss、RO、RW、ZI、Code、elf、bin、hex扫盲 - solonj - 博客园 (cnblogs.com)](https://www.cnblogs.com/solo666/p/16619167.html)
+
+text：
+
+>‘text’ is what ends up in FLASH memory. I can show this with adding.
+>
+>text段最终是存放在FLASH存储器中的。通过增加如下代码到程序中：
+>
+>```c
+>void foo(void) {
+>
+>  /* dummy function to show how this adds to 'text' */
+>
+>}
+>```
+>
+>但text段不仅包含函数，还有常量。例如我有如下的一个常量表：
+>
+>```c
+>const int table[] = {5,0,1,5,6,7,9,10};
+>```
+
+data：
+
+>‘data’ is used for initialized data. This is best explained with the following (global/extern) variable:
+>
+>data段是用于初始化数据。用如下的变量（全局/外部）可以解释得很清楚：
+>
+>```c
+>int32_t myVar = 0x12345678;
+>```
+>
+>Adding above variable to my application will increase the ‘data’ portion by 4 bytes:
+>
+>加入上述变量会导致我的应用的data部分增长四个字节
+
+bss：
+
+>The ‘bss’ contains all the uninitalized data.
+>
+>bss段包含着所有未初始化的数据。
+>
+>bss (or .bss, or BSS) is the abbreviation for ‘Block Started by Symbol’ by an old assembler (see this [link](https://www.oschina.net/action/GoToLink?url=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2F.bss)).
+>
+>bss（.bss, BSS ) 是旧式汇编器中‘Block Started by Symbol’的简称（详情参看 [link](https://www.oschina.net/action/GoToLink?url=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2F.bss)）。
+>
+>This is best explained with following (global/extern) variable:
+>
+>用如下的变量（全局/外部）可以解释得很清楚：
+>
+>```c
+>int32_t myGlobal;
+>```
+>
+>Adding this variable will increase the ‘bss’ portion by 4:
+>
+>加入上述变量会导致bss部分增长4个字节：
+
+dec：
+
+>The ‘dec’ (as a decimal number) is the sum of text, data and bss:
+>
+>dec（decimal的缩写，即十进制数）是text，data和bss的算术和。
+>
+>```c
+>dec = text + data + bss
+>```
+
+hex：
+
+>hex是十六进制数，是text，data和bss的算术和。
+>
+>```c
+>hex = text + data + bss
+>```
+
+总结：
+
+- text：`（.text）= (Code + RO data)`，存放代码、常量及向量表，只读，在Flash中存放。
+- data：`(.data) = (RW data)`，存放已初始化的全局/静态变量，可读可写，最终存放在FLASH。
+- bss：`(.bss) = (ZI data)`，存放所有未初始化的全局/静态变量，可读可写。 最终存放在RAM。
+
+疑问：我添加一个全局变量，没看到有哪一项增加了啊，是不是被优化了？
+
+
+
+## hex文件
+
+<img src="imgR7FA2/hex文件.png" style="zoom:67%;" />
+
+
+
+
 
 # 启动文件
 
@@ -180,9 +313,12 @@ File → New → 瑞萨C/C++项目 → Renesas RA → Renesas RA C/C++ Project �
 - 通过初始化函数来封装对外设初始化的具体操作。
 - 通过函数来封装对外设寄存器的数据的读取操作。
 
-寄存器数据重映射 → 封装 → 函数 → 函数库：
+寄存器数据重映射（利用宏定义或枚举映射好地址） → 封装 → 函数 → 函数库：
 
 - 访问到寄存器，从寄存器数据读取数据，往寄存器写入数据。
+- 本质：控制寄存器，从而控制单片机按照预设的路径进行工作，以实现我们的需求。
+
+示例：通过使用指针来控制IO相关寄存器，以便控制IO口输出
 
 ```c
 while(1){
@@ -196,7 +332,7 @@ while(1){
 
 
 
-# FSP库
+# FSP库开发
 
 ## 介绍
 
@@ -214,7 +350,18 @@ while(1){
 
 ![](imgR7FA2/fsp_struct.png)
 
+总结：
+
+- 底层：BSP：
+- 硬件抽象层：HAL。
+- 中间件：freertos、MQTT等。
+- 软件生成代码、用户代码、编译输出文件。
+
+
+
 ## 开发
+
+e2Stdio：
 
 1. 创建工程。
 2. 通过图形化界面配置引脚。
@@ -223,6 +370,22 @@ while(1){
 5. `hal_entry()`函数里调用功能函数以实现各种功能。
 
 需要掌握FSP库的底层实现逻辑，这样可以更好地熟悉FSP库的API。
+
+FSP库开发总结：
+
+- 工具：熟悉使用e2Stdio开发工具，熟悉使用其生成片上外设初始化代码，熟悉FSP库架构和FSP库函数。
+- 开发：配置好片上外设后，基于片上外设开进行应用开发。
+- 图形化界面配置的好处：使得配置单片机的外设更加便捷，使开发者的精力能够更多的聚焦于应用开发中。坏处：不利于开发者理解底层寄存器操作。
+
+
+
+## FSP文档
+
+下载FSP库后，里面会包含有库文档，有关于各种接口和函数的说明。
+
+安装e2Stdio后，安装FSP库后，在e2Stdio安装目录里就能找到FSP库文档。
+
+
 
 ## 命名
 
@@ -244,8 +407,6 @@ FSP 中间件函数的名称命名格式一般为：**`RM_<MODULE>_<Function>`**
 
 
 
-
-
 ## 理念
 
 FSP库的理念：（其实就是高内聚低耦合的实践）
@@ -259,6 +420,8 @@ FSP库的理念：（其实就是高内聚低耦合的实践）
 
 - 配置放一边，函数声明放一边，函数实现放一边。
 - 配置信息集合成一个配置结构体；函数构建一个接口集合；整个外设模块看成是一个对象，里面包含了配置信息和接口实例，当使用某个外设模块时，通过调用这个对象的配置信息和接口实例即可。
+
+
 
 
 
@@ -276,6 +439,274 @@ FSP库中的一些术语：
 - 回调函数-Callback Functions：使用函数指针传入函数中的再函数内部调用的函数，通常在函数内部还对其有着事件约束。
 
 总结：FSP库是应用面向对象编程思想来设计的。
+
+# 模块设计详解
+
+- Application 是用户编写的。
+- Middleware 是第 3 方的代码。 
+- BSP 的代码量很少：启动、系统初始化、时钟、中断。
+- HAL 层是 FSP 的核心。  
+
+HAL层的主要作用：各模块的驱动程序——称为Module；两个作用，一是提供接口，另一个就是调用其它的底层接口以实现功能
+
+FSP库源码设计理念：配置与接口分离、接口与实例分离  。
+
+**以GPIO为例展示FSP库设计理念：**
+
+1、配置与接口分离：配置，即对IO口的设置，设置哪个引脚，设置为输入还是输出模式，是否设置内部上拉或下拉等；接口，其实就是一些函数，这些函数接口都是用来操作IO口的，将其包住在结构体中完成封装。
+
+配置的封装：（pin_data.c）
+
+- 将IO口抽象为一个个体，其包含的信息——引脚配置和引脚号。（结构体ioport_pin_cfg_t）
+- 如果是多个IO口呢？那么可以使用数组来存储相同数据类型的数据。（数组ioport_pin_cfg_t g_bsp_pin_cfg_data[]）
+- C中，在函数中使用数组，可不仅仅只是传入数组指针，还得传入数组的长度来对数据进行遍历，所以使用面向对象的思想，这些信息也应该被封装起来。（结构体ioport_cfg_t，里面包含了引脚数量（也就是数组长度），数组指针，以及提供一个接口以便适应硬件的拓展性）
+
+```c
+/** Multiple pin configuration data for loading into registers by R_IOPORT_Open() */
+typedef struct st_ioport_cfg
+{
+    uint16_t                 number_of_pins; ///< Number of pins for which there is configuration data
+    ioport_pin_cfg_t const * p_pin_cfg_data; ///< Pin configuration data
+    const void             * p_extend;       ///< Pointer to hardware extend configuration
+} ioport_cfg_t;
+
+
+/** Pin identifier and pin configuration value */
+typedef struct st_ioport_pin_cfg
+{
+    uint32_t          pin_cfg;         ///< Pin configuration - Use ioport_cfg_options_t parameters to configure
+    bsp_io_port_pin_t pin;             ///< Pin identifier
+} ioport_pin_cfg_t;
+
+/* 定义一个关于引脚配置的数组 */
+const ioport_pin_cfg_t g_bsp_pin_cfg_data[] =
+        {
+        { .pin = BSP_IO_PORT_00_PIN_11, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_01_PIN_05, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_01_PIN_06, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_01_PIN_07, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_01_PIN_08, .pin_cfg = ((uint32_t) IOPORT_CFG_PERIPHERAL_PIN
+                  | (uint32_t) IOPORT_PERIPHERAL_DEBUG) },
+          { .pin = BSP_IO_PORT_01_PIN_11, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_02_PIN_01, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_02_PIN_04, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_02_PIN_06, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_HIGH) },
+          { .pin = BSP_IO_PORT_02_PIN_08, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_03_PIN_00, .pin_cfg = ((uint32_t) IOPORT_CFG_PERIPHERAL_PIN
+                  | (uint32_t) IOPORT_PERIPHERAL_DEBUG) },
+          { .pin = BSP_IO_PORT_03_PIN_04, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_04_PIN_00, .pin_cfg = ((uint32_t) IOPORT_CFG_PERIPHERAL_PIN
+                  | (uint32_t) IOPORT_PERIPHERAL_IIC) },
+          { .pin = BSP_IO_PORT_04_PIN_01, .pin_cfg = ((uint32_t) IOPORT_CFG_PERIPHERAL_PIN
+                  | (uint32_t) IOPORT_PERIPHERAL_IIC) },
+          { .pin = BSP_IO_PORT_04_PIN_02, .pin_cfg = ((uint32_t) IOPORT_CFG_IRQ_ENABLE
+                  | (uint32_t) IOPORT_CFG_PORT_DIRECTION_INPUT) },
+          { .pin = BSP_IO_PORT_04_PIN_03, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_05_PIN_01, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_05_PIN_02, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_09_PIN_13, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_09_PIN_14, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
+          { .pin = BSP_IO_PORT_09_PIN_15, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
+                  | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) }, };
+/* 多个引脚配置信息，其实就是数组长度和数组指针，为了遍历到各个引脚的配置信息 */
+const ioport_cfg_t g_bsp_pin_cfg =
+{ .number_of_pins = sizeof(g_bsp_pin_cfg_data) / sizeof(ioport_pin_cfg_t), .p_pin_cfg_data = &g_bsp_pin_cfg_data[0], };
+
+```
+
+接口函数：（r_ioport.h）
+
+- 在Java中，接口是抽象函数的集合，具体实现由实现此接口的类来进行具体定义。而在C中，可将函数指针看作是一个接口，具体实现由此函数指针所指向的那个函数所决定。不同于面向对象的语言，在C中，可通过使用结构体来定义一个接口，只不过这个结构体内都是函数指针。面向对象、接口、抽象等都是一种思想，封装、继承、多态是面向对象的三大特性，当我们基于这些思想的指导去实践出的东西具有某种契合的特质，就可以说这是XXX了，就比如我用C的结构体去装了一些函数指针，我对其进行抽象，进行高度概括，发现这不就和接口的原本的意义一致么——只言其用处，不言其实现。至于思想从何而来，又是如何反哺到现实实践活动中的呢？思想是对现实世界抽象后的高度概括，其反哺形式为在基于人所实践的各种活动之中。
+- FSP库中，定义了一个IO口的驱动程序接口——具体实现形式为成员为函数指针的结构体。
+- 定义了一个实例结构体，可将其看作是一个类，其内部成员包含接口结构体，即可看作是这个类实现了这个接口（ioport_api_t const * p_api）。里面还包括引脚的配置信息（ioport_cfg_t const * p_cfg;）。以及一个辅助成员，用于记录。
+
+```c
+/** IOPort driver structure. IOPort functions implemented at the HAL layer will follow this API. */
+typedef struct st_ioport_api
+{
+    /** Initialize internal driver data and initial pin configurations.  Called during startup.  Do
+     * not call this API during runtime.  Use @ref ioport_api_t::pinsCfg for runtime reconfiguration of
+     * multiple pins.
+     *
+     * @param[in]      p_ctrl     Pointer to control structure. Must be declared by user. Elements set here.
+     * @param[in]      p_cfg      Pointer to pin configuration data array.
+     */
+    fsp_err_t (* open)(ioport_ctrl_t * const p_ctrl, const ioport_cfg_t * p_cfg);
+
+    /** Close the API.
+     *
+     * @param[in]   p_ctrl  Pointer to control structure.
+     **/
+    fsp_err_t (* close)(ioport_ctrl_t * const p_ctrl);
+
+    /** Configure multiple pins.
+     *
+     * @param[in]  p_ctrl     Pointer to control structure.
+     * @param[in]  p_cfg      Pointer to pin configuration data array.
+     */
+    fsp_err_t (* pinsCfg)(ioport_ctrl_t * const p_ctrl, const ioport_cfg_t * p_cfg);
+
+    /** Configure settings for an individual pin.
+     *
+     * @param[in]  p_ctrl               Pointer to control structure.
+     * @param[in]  pin                  Pin to be read.
+     * @param[in]  cfg                  Configuration options for the pin.
+     */
+    fsp_err_t (* pinCfg)(ioport_ctrl_t * const p_ctrl, bsp_io_port_pin_t pin, uint32_t cfg);
+
+    /** Read the event input data of the specified pin and return the level.
+     *
+     * @param[in]  p_ctrl              Pointer to control structure.
+     * @param[in]  pin                 Pin to be read.
+     * @param[in]  p_pin_event         Pointer to return the event data.
+     */
+    fsp_err_t (* pinEventInputRead)(ioport_ctrl_t * const p_ctrl, bsp_io_port_pin_t pin, bsp_io_level_t * p_pin_event);
+
+    /** Write pin event data.
+     *
+     * @param[in]  p_ctrl               Pointer to control structure.
+     * @param[in]  pin                  Pin event data is to be written to.
+     * @param[in]  pin_value            Level to be written to pin output event.
+     */
+    fsp_err_t (* pinEventOutputWrite)(ioport_ctrl_t * const p_ctrl, bsp_io_port_pin_t pin, bsp_io_level_t pin_value);
+
+    /** Read level of a pin.
+     *
+     * @param[in]  p_ctrl               Pointer to control structure.
+     * @param[in]  pin                  Pin to be read.
+     * @param[in]  p_pin_value          Pointer to return the pin level.
+     */
+    fsp_err_t (* pinRead)(ioport_ctrl_t * const p_ctrl, bsp_io_port_pin_t pin, bsp_io_level_t * p_pin_value);
+
+    /** Write specified level to a pin.
+     *
+     * @param[in]  p_ctrl               Pointer to control structure.
+     * @param[in]  pin                  Pin to be written to.
+     * @param[in]  level                State to be written to the pin.
+     */
+    fsp_err_t (* pinWrite)(ioport_ctrl_t * const p_ctrl, bsp_io_port_pin_t pin, bsp_io_level_t level);
+
+    /** Set the direction of one or more pins on a port.
+     *
+     * @param[in]  p_ctrl               Pointer to control structure.
+     * @param[in]  port                 Port being configured.
+     * @param[in]  direction_values     Value controlling direction of pins on port.
+     * @param[in]  mask                 Mask controlling which pins on the port are to be configured.
+     */
+    fsp_err_t (* portDirectionSet)(ioport_ctrl_t * const p_ctrl, bsp_io_port_t port, ioport_size_t direction_values,
+                                   ioport_size_t mask);
+
+    /** Read captured event data for a port.
+     *
+     * @param[in]  p_ctrl               Pointer to control structure.
+     * @param[in]  port                 Port to be read.
+     * @param[in]  p_event_data         Pointer to return the event data.
+     */
+    fsp_err_t (* portEventInputRead)(ioport_ctrl_t * const p_ctrl, bsp_io_port_t port, ioport_size_t * p_event_data);
+
+    /** Write event output data for a port.
+     *
+     * @param[in]  p_ctrl               Pointer to control structure.
+     * @param[in]  port                 Port event data will be written to.
+     * @param[in]  event_data           Data to be written as event data to specified port.
+     * @param[in]  mask_value           Each bit set to 1 in the mask corresponds to that bit's value in event data.
+     * being written to port.
+     */
+    fsp_err_t (* portEventOutputWrite)(ioport_ctrl_t * const p_ctrl, bsp_io_port_t port, ioport_size_t event_data,
+                                       ioport_size_t mask_value);
+
+    /** Read states of pins on the specified port.
+     *
+     * @param[in]  p_ctrl               Pointer to control structure.
+     * @param[in]  port                 Port to be read.
+     * @param[in]  p_port_value         Pointer to return the port value.
+     */
+    fsp_err_t (* portRead)(ioport_ctrl_t * const p_ctrl, bsp_io_port_t port, ioport_size_t * p_port_value);
+
+    /** Write to multiple pins on a port.
+     *
+     * @param[in]  p_ctrl               Pointer to control structure.
+     * @param[in]  port                 Port to be written to.
+     * @param[in]  value                Value to be written to the port.
+     * @param[in]  mask                 Mask controlling which pins on the port are written to.
+     */
+    fsp_err_t (* portWrite)(ioport_ctrl_t * const p_ctrl, bsp_io_port_t port, ioport_size_t value, ioport_size_t mask);
+} ioport_api_t;
+
+/** This structure encompasses everything that is needed to use an instance of this interface. */
+typedef struct st_ioport_instance
+{
+    ioport_ctrl_t      * p_ctrl;       ///< Pointer to the control structure for this instance
+    ioport_cfg_t const * p_cfg;        ///< Pointer to the configuration structure for this instance
+    ioport_api_t const * p_api;        ///< Pointer to the API structure for this instance
+} ioport_instance_t;
+/******** r_ioport.h ********/
+/** IOPORT private control block. DO NOT MODIFY. Initialization occurs when R_IOPORT_Open() is called. */
+typedef struct st_ioport_instance_ctrl
+{
+    uint32_t     open;
+    void const * p_context;
+} ioport_instance_ctrl_t;
+```
+
+（r_ioport.c）
+
+```c
+/* IOPort Implementation of IOPort Driver  */
+const ioport_api_t g_ioport_on_ioport =
+{
+    .open                 = R_IOPORT_Open,
+    .close                = R_IOPORT_Close,
+    .pinsCfg              = R_IOPORT_PinsCfg,
+    .pinCfg               = R_IOPORT_PinCfg,
+    .pinEventInputRead    = R_IOPORT_PinEventInputRead,
+    .pinEventOutputWrite  = R_IOPORT_PinEventOutputWrite,
+    .pinRead              = R_IOPORT_PinRead,
+    .pinWrite             = R_IOPORT_PinWrite,
+    .portDirectionSet     = R_IOPORT_PortDirectionSet,
+    .portEventInputRead   = R_IOPORT_PortEventInputRead,
+    .portEventOutputWrite = R_IOPORT_PortEventOutputWrite,
+    .portRead             = R_IOPORT_PortRead,
+    .portWrite            = R_IOPORT_PortWrite,
+};
+```
+
+`ra_gen/common_data.c`：
+
+```c
+ioport_instance_ctrl_t g_ioport_ctrl;
+const ioport_instance_t g_ioport =
+{ .p_api = &g_ioport_on_ioport, .p_ctrl = &g_ioport_ctrl, .p_cfg = &g_bsp_pin_cfg, };
+```
+
+
+
+总结：
+
+1. 运用面向对象思想，使用结构体将目标封装成对象。
+2. 如果目标对象有很多，那就使用数组将同类对象聚在一起。
+3. 因为C中，数组当作形参时，往往是传入数组指针和数组长度，所以基于面向对象的思想，再次将这些东西封装进结构体。
+4. FSP使用配置、接口、实例相分离的理念，所以再对接口进行定义，接口是抽象方法的集合，所以在C中，使用结构体＋函数指针来实现。
+5. FSP中的完整对象应该是`实例=配置+接口+辅助信息/标记`。为什么不像C++中的结构体就是类那样去做呢？可能是基于单一职责的原因，FSP的理念是配置、接口、实例分离，再者C++中的struct的特性对于C99中的也有些差别。
+
+
+
+
 
 # CGC
 
