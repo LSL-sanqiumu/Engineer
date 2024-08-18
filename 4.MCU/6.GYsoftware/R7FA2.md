@@ -74,6 +74,14 @@ RA系列库：FSP库（灵活配置软件包）。实时操作系统：支持Fre
 
 
 
+## BOOT模式
+
+RA2的MD引脚就是用于切换BOOT模式的，当MD引脚电平为低时就是串口烧录模式，此时可通过P110、P109进行烧录。
+
+下载软件：Renesas Flash Programmer。
+
+
+
 ## J-Link RTT View
 
 安装J-Link后，找到`SEGGER_RTT_V794f.zip`文件。解压后将Config目录里的SEGGER_RTT_Conf.h放到RTT文件夹里，里面的五个文件就是需要使用到的。
@@ -271,37 +279,6 @@ hex：
 
 
 
-
-
-# 启动文件
-
-启动文件是系统上电复位后执行的第一个程序。主要做了以下工作：
-
-1. 初始化堆栈。
-2. 使能FPU（float-point unit，即浮点单元）。
-3. 定位中断向量表。
-4. 配置系统时钟。
-5. 启用CORTEX-M33栈监视器。
-6. 初始化C语言运行环境。
-7. 初始化变量SystemCoreClock，这个变量存放的是处理器时钟的频率。
-8. 初始化用于触发NVIC中断的ELC（Event Link Controller）事件。
-9. **初始化IO口。**
-
-瑞萨RA单片机，启动文件是C编写的，名称为`startup.c`，进行的操作主要如以下：
-
-- 复位程序。
-- 栈区初始化。
-- 堆区初始化。
-- 中断向量表初始化。
-
-
-
-## SystemInit()
-
-
-
-
-
 # 寄存器开发
 
 通过指针直接访问寄存器进行功能开发。例如操作GPIO口，通过查阅硬件手册找到相关寄存器，操作寄存器完成对IO口的开放、配置、输入读取、输出等操作。
@@ -334,7 +311,9 @@ while(1){
 
 # FSP库开发
 
-## 介绍
+## 基本知识
+
+### 关于FSP库
 
 >**瑞萨电子灵活配置软件包** (FSP) 是用于嵌入式系统设计的高质量增强型软件包，支持瑞萨电子 RA 产品家族 Arm 微控制器，提供用户友好的界面且可灵活扩展，确保从入门级到高性能的整个 RA 微控制器的软件兼容性。
 >
@@ -342,7 +321,7 @@ while(1){
 >
 >FSP基于C99编写。
 
-## 架构
+### 库架构
 
 着重点：BSP、HAL、FreeRTOS、MQTT、WiFi、BLE。
 
@@ -359,7 +338,7 @@ while(1){
 
 
 
-## 开发
+### 基于库的开发
 
 e2Stdio：
 
@@ -379,7 +358,7 @@ FSP库开发总结：
 
 
 
-## FSP文档
+### FSP文档
 
 下载FSP库后，里面会包含有库文档，有关于各种接口和函数的说明。
 
@@ -387,7 +366,7 @@ FSP库开发总结：
 
 
 
-## 命名
+### 库命名格式
 
 BSP：BSP 函数名称以 **R_BSP_** 开头，BSP 宏以 **BSP_** 开头，数据类型定义以 **_bsp** 开头。
 
@@ -407,7 +386,7 @@ FSP 中间件函数的名称命名格式一般为：**`RM_<MODULE>_<Function>`**
 
 
 
-## 理念
+### FSP理念
 
 FSP库的理念：（其实就是高内聚低耦合的实践）
 
@@ -425,7 +404,7 @@ FSP库的理念：（其实就是高内聚低耦合的实践）
 
 
 
-## 术语
+### 相关术语
 
 FSP库中的一些术语：
 
@@ -440,28 +419,29 @@ FSP库中的一些术语：
 
 总结：FSP库是应用面向对象编程思想来设计的。
 
-# 模块设计详解
+## 模块设计详解
+
+层次结构划分：
 
 - Application 是用户编写的。
 - Middleware 是第 3 方的代码。 
 - BSP 的代码量很少：启动、系统初始化、时钟、中断。
-- HAL 层是 FSP 的核心。  
+- HAL 层是 FSP 的核心。  （HAL层的主要作用：各模块的驱动程序——称为Module；HAL层的两个作用，一是提供接口，另一个就是调用其它的底层接口以实现功能。）
 
-HAL层的主要作用：各模块的驱动程序——称为Module；两个作用，一是提供接口，另一个就是调用其它的底层接口以实现功能
-
-FSP库源码设计理念：配置与接口分离、接口与实例分离  。
+**FSP库源码设计理念：配置与接口分离、接口与实例分离。**
 
 **以GPIO为例展示FSP库设计理念：**
 
-1、配置与接口分离：配置，即对IO口的设置，设置哪个引脚，设置为输入还是输出模式，是否设置内部上拉或下拉等；接口，其实就是一些函数，这些函数接口都是用来操作IO口的，将其包住在结构体中完成封装。
+1、配置与接口分离：配置，即对IO口的设置，设置哪个引脚，设置为输入还是输出模式，是否设置内部上拉或下拉等；接口，其实就是一些函数，这些函数接口都是用来操作IO口的，将其放于结构体中完成封装。
 
 配置的封装：（pin_data.c）
 
-- 将IO口抽象为一个个体，其包含的信息——引脚配置和引脚号。（结构体ioport_pin_cfg_t）
-- 如果是多个IO口呢？那么可以使用数组来存储相同数据类型的数据。（数组ioport_pin_cfg_t g_bsp_pin_cfg_data[]）
-- C中，在函数中使用数组，可不仅仅只是传入数组指针，还得传入数组的长度来对数据进行遍历，所以使用面向对象的思想，这些信息也应该被封装起来。（结构体ioport_cfg_t，里面包含了引脚数量（也就是数组长度），数组指针，以及提供一个接口以便适应硬件的拓展性）
+- 将一个IO口抽象为一个个体，其包含的信息——引脚配置和引脚号等。（结构体`ioport_pin_cfg_t`——ioport模块的一个pin的configuration）
+- 如果是多个IO口呢？那么可以使用数组来存储相同数据类型的数据。（数组`ioport_pin_cfg_t  g_bsp_pin_cfg_data[]`）
+- C中，在函数中使用数组，可不仅仅只是传入数组指针，还得传入数组的长度来对数据进行遍历，所以使用面向对象的思想，这些信息也应该被封装起来。（结构体`ioport_cfg_t`，里面包含了引脚数量（也就是数组长度），数组指针，以及提供一个接口以便适应硬件的拓展性）
 
 ```c
+/* 1、ioport模块的总配置信息，包含了引脚数、全部io口的配置信息、以及一个拓展配置接口 */
 /** Multiple pin configuration data for loading into registers by R_IOPORT_Open() */
 typedef struct st_ioport_cfg
 {
@@ -470,7 +450,7 @@ typedef struct st_ioport_cfg
     const void             * p_extend;       ///< Pointer to hardware extend configuration
 } ioport_cfg_t;
 
-
+/* 2、一个引脚的配置信息，包含了引脚定义 */
 /** Pin identifier and pin configuration value */
 typedef struct st_ioport_pin_cfg
 {
@@ -478,7 +458,7 @@ typedef struct st_ioport_pin_cfg
     bsp_io_port_pin_t pin;             ///< Pin identifier
 } ioport_pin_cfg_t;
 
-/* 定义一个关于引脚配置的数组 */
+/* 3、一个数组，定义一个包含了全部已配置引脚的数组 */
 const ioport_pin_cfg_t g_bsp_pin_cfg_data[] =
         {
         { .pin = BSP_IO_PORT_00_PIN_11, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
@@ -523,7 +503,7 @@ const ioport_pin_cfg_t g_bsp_pin_cfg_data[] =
                   | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) },
           { .pin = BSP_IO_PORT_09_PIN_15, .pin_cfg = ((uint32_t) IOPORT_CFG_PORT_DIRECTION_OUTPUT
                   | (uint32_t) IOPORT_CFG_PORT_OUTPUT_LOW) }, };
-/* 多个引脚配置信息，其实就是数组长度和数组指针，为了遍历到各个引脚的配置信息 */
+/* 4、全部引脚的配置信息，包含了多个引脚配置信息，其实就是数组长度和数组指针，为了遍历到各个引脚的配置信息 */
 const ioport_cfg_t g_bsp_pin_cfg =
 { .number_of_pins = sizeof(g_bsp_pin_cfg_data) / sizeof(ioport_pin_cfg_t), .p_pin_cfg_data = &g_bsp_pin_cfg_data[0], };
 
@@ -686,10 +666,11 @@ const ioport_api_t g_ioport_on_ioport =
 };
 ```
 
-`ra_gen/common_data.c`：
+实例：（`ra_gen/common_data.c`）
 
 ```c
 ioport_instance_ctrl_t g_ioport_ctrl;
+/* ioport模块的实例，实例 = 配置 + 接口 + 其他 */
 const ioport_instance_t g_ioport =
 { .p_api = &g_ioport_on_ioport, .p_ctrl = &g_ioport_ctrl, .p_cfg = &g_bsp_pin_cfg, };
 ```
@@ -699,10 +680,77 @@ const ioport_instance_t g_ioport =
 总结：
 
 1. 运用面向对象思想，使用结构体将目标封装成对象。
-2. 如果目标对象有很多，那就使用数组将同类对象聚在一起。
+2. 如果目标对象有很多，那就使用数组将同类对象聚合在一起。
 3. 因为C中，数组当作形参时，往往是传入数组指针和数组长度，所以基于面向对象的思想，再次将这些东西封装进结构体。
-4. FSP使用配置、接口、实例相分离的理念，所以再对接口进行定义，接口是抽象方法的集合，所以在C中，使用结构体＋函数指针来实现。
+4. FSP使用配置、接口、实例相分离的理念，所以需再对接口进行定义；接口是抽象方法的集合，所以在C中，使用结构体＋函数指针来实现。
 5. FSP中的完整对象应该是`实例=配置+接口+辅助信息/标记`。为什么不像C++中的结构体就是类那样去做呢？可能是基于单一职责的原因，FSP的理念是配置、接口、实例分离，再者C++中的struct的特性对于C99中的也有些差别。
+
+## 如何学习库？
+
+目标：
+
+1. 先熟练使用库进行开发，再学习学习库源码。
+
+2. 熟悉FSP库开发的基本流程，从创建项目到最终交付项目的这个过程所用到的都应该搞清楚。
+
+   - 创建项目。
+
+   - 配置芯片外设，并且官方提供的可视化配置工具到底生成了些什么代码得知道。
+
+   - 基于芯片外设写驱动——得熟悉FSP库函数，后续还得深入底层到寄存器层次，搞清楚这些库函数底层到底干了什么，怎么去干的。
+
+   - 基于驱动写功能——业务代码主要就在这里了，得做好架构，然后基于框架去进行开发。
+
+     ​	①理解清楚需求先，不知道干什么你是写不好代码的，就算写好了，那也不是人家想要的。
+
+     ​	②要会分而治之，复杂的需求先分解成小需求去解决。
+
+     ​	③流程图要做好，多花点时间去思考逻辑流程而不是急着写代码。
+
+     ​	④程序复盘是必要的，即使项目已经结束了，但仍然需要找点时间想想还有没有更好的实现方式。
+
+     ​	⑤切忌浮躁，无论怎样，都得学会冷静应对各种各样的麻烦与问题。
+
+3. 多看看官方的资料，数据手册、API文档等。
+
+4. 注重积累，做好记录，遇到奇奇怪怪的问题也不要慌，尽力去解决。
+
+
+
+# 启动文件
+
+## About
+
+启动文件是系统上电复位后执行的第一个程序。主要做了以下工作：
+
+1. 初始化堆栈。
+2. 使能FPU（float-point unit，即浮点单元）。
+3. 定位中断向量表。
+4. 配置系统时钟。
+5. 启用CORTEX-M33栈监视器。
+6. 初始化C语言运行环境。
+7. 初始化变量SystemCoreClock，这个变量存放的是处理器时钟的频率。
+8. 初始化用于触发NVIC中断的ELC（Event Link Controller）事件。
+9. **初始化IO口。**
+
+瑞萨RA单片机，启动文件是C编写的，名称为`startup.c`，进行的操作主要如以下：
+
+- 复位程序。
+- 栈区初始化。
+- 堆区初始化。
+- 中断向量表初始化。
+
+疑问：引脚悬空了一些，运行时会在SystemInit()堵塞住，然后摸一下芯片上面就能继续运行了，为什么呢？引脚没配置好会导致系统初始化卡在某一处，那到底是哪个引脚导致的呢？
+
+
+
+## SystemInit()
+
+目标：搞清楚芯片复位后到程序执行的这段时间里所执行的程序做了些什么。
+
+
+
+
 
 
 
@@ -710,7 +758,9 @@ const ioport_instance_t g_ioport =
 
 # CGC
 
-RA2E1的时钟：
+学习目标：了解清楚各个时钟所作用的对象，熟练控制时钟的设置、开启与关闭。
+
+RA2E1的时钟：（主要使用片上时钟和外接的32.768kHz的时钟，外接主时钟基本不用）
 
 - 主时钟（MOSC）：1~20MHz。（需外接晶体振荡器）
 - 副时钟（SOSC）：32.768kHz。（需外接晶体振荡器，通常为RTC准备的）
@@ -721,29 +771,29 @@ RA2E1的时钟：
 - IWTD专用片上振荡器：15kHz。
 - 支持时钟信号输出。
 
-CGC：clock generation circuit，即时钟生成电路，通常称之为“时钟控制电路”。
+CGC：clock generation circuit，即时钟生成电路，通常称之为“时钟控制电路”。可通过图形化配置来进行时钟配置。
 
-可通过图形化配置来进行时钟配置。
+
+
+
 
 # IO Ports
 
-## 概述
-
-
-
-
-
-
-
 ## 寄存器操作
 
+```c
+while(1){
+    *(volatile uint32_t*)(0x40040000 + 0x0020 * 3) |= 0x00100010;
+    R_BSP_SoftwareDelay(500, BSP_DELAY_UNITS_MILLISECONDS);
+
+    *(volatile uint32_t*)(0x40040000 + 0x0020 * 3) &= 0x11011101;
+    R_BSP_SoftwareDelay(500, BSP_DELAY_UNITS_MILLISECONDS);
+}
+```
 
 
 
-
-
-
-## FSP
+## 相关库函数
 
 `r_ioport.h`、`r_ioport.c`：
 
@@ -868,6 +918,52 @@ LowPowerModes
 
 
 # RTC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# CTSU
+
+## 自电容按键原理
+
+
+
+
+
+
+
+
+
+## 配置
+
+1、配置好TSCAP和支持触摸引脚的IO口。
+
+2、堆栈内在CapTouch模块创建一个Touch。
+
+3、修改创建的Touch的CTSU，通常默认即可。
+
+4、生成代码。
+
+5、使用QE工具，根据QE 的Cap Touch Workflow来设置，注意第一次根据流程一路执行下去生成代码，并把样例程序输出出来即可。
+
+6、然后再**hal_entry**中调用`qe_touch_main();`，再次使用QE进行仿真，就可以灵敏度设置了。
+
+
+
+
+
+
 
 
 
