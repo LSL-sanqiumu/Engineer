@@ -771,7 +771,7 @@ RA2E1的时钟：（主要使用片上时钟和外接的32.768kHz的时钟，外
 - IWTD专用片上振荡器：15kHz。
 - 支持时钟信号输出。
 
-CGC：clock generation circuit，即时钟生成电路，通常称之为“时钟控制电路”。可通过图形化配置来进行时钟配置。
+CGC：clock generation circuit，即时钟生成电路，通常称之为“时钟控制电路”。
 
 
 
@@ -780,6 +780,8 @@ CGC：clock generation circuit，即时钟生成电路，通常称之为“时�
 # IO Ports
 
 ## 寄存器操作
+
+通过寄存器的地址，直接对寄存器进行操作，从而控制IO口。IO口相关的寄存器详细信息见数据手册。
 
 ```c
 while(1){
@@ -793,7 +795,26 @@ while(1){
 
 
 
+## IO初始化
+
+FSP的理念是配置、接口、实例分离，IO模块的初始化通过配置信息来完成一次性地初始化全部已配置的IO口。
+
+初始化IO模块的库函数：
+
+- `g_ioport_ctrl`是控制块参数，用于标记是否进行了IO初始化？
+  - `g_ioport.p_cfg`，IO口的配置参数。g_ioport是IO模块的实例，里面有着全部已配置IO的信息，通过该实例可调用IO的配置信息。
+
+```c
+R_IOPORT_Open (&g_ioport_ctrl, g_ioport.p_cfg);
+```
+
+
+
+
+
 ## 相关库函数
+
+函数的形参与功能。
 
 `r_ioport.h`、`r_ioport.c`：
 
@@ -819,11 +840,74 @@ fsp_err_t R_IOPORT_PortRead(ioport_ctrl_t * const p_ctrl, bsp_io_port_t port, io
 fsp_err_t R_IOPORT_PortWrite(ioport_ctrl_t * const p_ctrl, bsp_io_port_t port, ioport_size_t value, ioport_size_t mask);
 ```
 
+常用的：
+
+```c
+/* 1、IO初始化 */
+R_IOPORT_Open(&g_ioport_ctrl, g_ioport.p_cfg);
+/* 2、关闭IO模块 */
+R_IOPORT_Close(&g_ioport_ctrl);
+/* 3、读取某个引脚输入的高低电平，读取到指定电平时返回1，否则返回0 */
+R_IOPORT_PinRead(&g_ioport_ctrl, BSP_IO_PORT_03_PIN_03, BSP_IO_LEVEL_LOW);
+R_IOPORT_PinRead(&g_ioport_ctrl, BSP_IO_PORT_03_PIN_03, BSP_IO_LEVEL_HIGH);
+/* 4、控制IO输出高低电平 */
+R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_03_PIN_03, BSP_IO_LEVEL_LOW);
+R_IOPORT_PinWrite(&g_ioport_ctrl, BSP_IO_PORT_03_PIN_03, BSP_IO_LEVEL_HIHG);
+```
+
+
+
+# 延时
+
+软件延时：
+
+```c
+/*
+/** Available delay units for R_BSP_SoftwareDelay(). These are ultimately used to calculate a total # of microseconds 
+typedef enum
+{
+    BSP_DELAY_UNITS_SECONDS      = 1000000, ///< Requested delay amount is in seconds
+    BSP_DELAY_UNITS_MILLISECONDS = 1000,    ///< Requested delay amount is in milliseconds
+    BSP_DELAY_UNITS_MICROSECONDS = 1        ///< Requested delay amount is in microseconds
+} bsp_delay_units_t;
+
+*/
+R_BSP_SoftwareDelay(xms, BSP_DELAY_UNITS_MILLISECONDS);
+```
+
+
+
+
+
+
+
 
 
 # ICU-EXTI
 
 ICU（Interrupt Controller Unit），中断控制单元。
+
+## 结构框图
+
+
+
+
+
+
+
+## 库函数
+
+
+
+
+
+
+
+## 使用
+
+
+
+
 
 
 
@@ -831,9 +915,29 @@ ICU（Interrupt Controller Unit），中断控制单元。
 
 # Timer
 
+## 结构框图
+
+
+
+
+
+
+
 ## GPT
 
 通用PWM定时器。
+
+
+
+### 库函数
+
+
+
+
+
+### 使用
+
+
 
 
 
@@ -843,7 +947,35 @@ ICU（Interrupt Controller Unit），中断控制单元。
 
 
 
+### 库函数
+
+
+
+
+
+
+
+### 使用
+
+
+
+
+
+
+
+
+
 ## WDT
+
+### 库函数
+
+
+
+
+
+### 使用
+
+
 
 
 
@@ -851,11 +983,39 @@ ICU（Interrupt Controller Unit），中断控制单元。
 
 ## IWDT
 
+### 库函数
+
+
+
+
+
+
+
+### 使用
+
+
+
+
+
 
 
 # SysTick
 
+## 寄存器
 
+
+
+
+
+
+
+## 库函数
+
+
+
+
+
+## 使用
 
 
 
@@ -867,7 +1027,27 @@ ICU（Interrupt Controller Unit），中断控制单元。
 
 # SCI
 
+## 结构框图
 
+
+
+
+
+
+
+
+
+## 库函数
+
+
+
+
+
+
+
+
+
+## 使用
 
 
 
@@ -881,7 +1061,27 @@ ICU（Interrupt Controller Unit），中断控制单元。
 
 # SPI
 
+## 结构框图
 
+
+
+
+
+
+
+
+
+## 库函数
+
+
+
+
+
+
+
+
+
+## 使用
 
 
 
@@ -891,7 +1091,27 @@ ICU（Interrupt Controller Unit），中断控制单元。
 
 # DTC
 
+## 结构框图
 
+
+
+
+
+
+
+
+
+## 库函数
+
+
+
+
+
+
+
+
+
+## 使用
 
 
 
@@ -901,7 +1121,27 @@ ICU（Interrupt Controller Unit），中断控制单元。
 
 # I2C
 
+## 结构框图
 
+
+
+
+
+
+
+
+
+## 库函数
+
+
+
+
+
+
+
+
+
+## 使用
 
 
 
@@ -913,12 +1153,53 @@ ICU（Interrupt Controller Unit），中断控制单元。
 
 LowPowerModes
 
+## 结构框图
 
+
+
+
+
+
+
+
+
+## 库函数
+
+
+
+
+
+
+
+
+
+## 使用
 
 
 
 # RTC
 
+## 结构框图
+
+
+
+
+
+
+
+
+
+## 库函数
+
+
+
+
+
+
+
+
+
+## 使用
 
 
 
@@ -932,8 +1213,7 @@ LowPowerModes
 
 
 
-
-# CTSU
+# ~~CTSU~~
 
 ## 自电容按键原理
 
